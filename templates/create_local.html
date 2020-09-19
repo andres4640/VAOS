@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuevo local</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/create_local.css">
+</head>
+
+<body>
+  <div class="container" >
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-6 col-md-8 col-10">
+        <h1>NUEVO LOCAL</h1>
+        <br>
+        <form>
+          <div class="form-group">
+                <label for="nombre">Nombre del local</label>
+                <input type="text" class="form-control" id="nombre">
+          </div>
+          <div class="form-group">
+            <label for="ubicacion">Ubicación del local</label>
+            <input type="text" class="form-control" id="ubicacion">
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="hapertura">Hora de apertura</label>
+                <input type="time" class="form-control" id="hapertura">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="hcierre">Hora de cierre</label>
+                <input type="time" class="form-control" id="hcierre">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="tpambiente">Tipo de ambiente</label>
+                <select class="form-control" id="tpambiente">
+                  <option>Casual</option>
+                  <option>Cocktail</option>
+                  <option>Internacional</option>
+                  <option>LGBT</option>
+                  <option>Underground</option>
+                  <option>Upscale</option>
+                </select>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label for="tpmusica">Tipo de música</label>
+                <select class="form-control" id="tpmusica">
+                  <option>Seleccionar una opción...</option>
+                  <option aria-selected="true">70-80's</option>
+                  <option>Comercial</option>
+                  <option>Electro</option>
+                  <option>Hip Hop, R&B</option>
+                  <option>Indie</option>
+                  <option>Jazz & Blues</option>
+                  <option>Latino</option>
+                  <option>Rock</option>
+                  <option>Techno</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <textarea class="form-control" id="descripcion" rows="8"></textarea>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fprincipal">Foto principal</label>
+            <button id="fprincipal" type="button" class="btn btn-secondary btn-sm">+ SUBIR FOTO</button>
+          <div class="form-group">
+            <label for="fcarta">Foto carta</label>
+            <button id="fcarta" type="button" class="btn btn-secondary btn-sm">+ SUBIR FOTO</button>
+          </div>  
+          </div>
+          <div class="text-center">
+            <button id="save" type="submit" class="btn btn-dark col-3">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

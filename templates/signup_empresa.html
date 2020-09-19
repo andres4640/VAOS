@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro empresa</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/signup_empresa.css">
+</head>
+
+<body>
+  <div class="container" >
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-6 col-md-8 col-10">
+        <h1>REGISTRA TU EMPRESA</h1>
+        <br>
+        <form>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="nombre-empresa">Nombre de la empresa</label>
+                <input type="text" class="form-control" id="nombre-empresa">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-7">
+              <div class="form-group">
+                <label for="ruc">RUC</label>
+                <input type="text" class="form-control" id="ruc">
+              </div>
+            </div>
+            <div class="col-5">
+              <div class="form-group">
+                <label for="telefono">Télefono</label>
+                <input type="text" class="form-control" id="telefono">
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="correo">Correo</label>
+            <input type="email" class="form-control" id="correo" placeholder="name@example.com">
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group">
+                <label for="contraseña">Contraseña</label>
+                <input type="password" class="form-control" id="contraseña">
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group">
+                <label for="contraseña">Repetir contraseña</label>
+                <input type="password" class="form-control" id="contraseña">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            
+            <div class="col-6">
+              <div class="form-group">
+                <label for="redsocial">Redes sociales</label>
+                <select class="form-control" id="redsocial">
+                  <option>Instagram</option>
+                  <option>Facebook</option>
+                  <option>Twitter</option>
+                  <option>WhatsApp</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <input type="text" class="form-control" id="link-redsocial">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="terminos">
+            <label class="form-check-label" for="terminos"><small>Acepto <strong><a href="">Términos y
+                    condiciones</a></strong></small></label>
+          </div>
+          <button id="signup" type="submit" class="btn btn-dark">Registrar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
