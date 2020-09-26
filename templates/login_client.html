@@ -17,21 +17,21 @@
       <div class="col-lg-10 col-md-10 col-10">
         <h1>INICIAR SESION</h1>
         <br>
-        <form>        
+        <form action="/login" method="POST">        
           <div class="form-group">
             
-            <input type="text" class="form-control" id="username" placeholder="Usuario o correo">
+            <input type="text" class="form-control" id="username" placeholder="Usuario o correo" name="correo">
           </div>
           <div class="form-group">
             
-            <input type="password" class="form-control" id="password" placeholder="Contraseña">
+            <input type="password" class="form-control" id="password" placeholder="Contraseña" name="contraseña">
           </div>
           <div>
             <button id="login" type="submit" class="btn btn-dark ">Ingresar</button>
           </div>
           <p></p>
           <div id="signup">
-            <a href="">Regístrarse</a></strong></small></label>
+            <a href="/registro_reg">Regístrarse</a></strong></small></label>
           </div>
         </form>
       </div>
@@ -39,7 +39,7 @@
   </div>
   <div id="signup-emp">
     <label>Si quieres registrar a tu empresa. Click
-    <a href="">aquí</a></strong></small>
+    <a href="/registro_emp">aquí</a></strong></small>
     </label>
   </div>
 </body>

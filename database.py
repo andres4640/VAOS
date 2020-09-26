@@ -52,6 +52,7 @@ class Usuario_reg(db.Model):
     correo = db.Column(db.String(100), unique=True)
     contraseña = db.Column(db.String(20))
     nombre = db.Column(db.String(30))
+    nombre_usuario = db.Column(db.String(30))
     apellido = db.Column(db.String(30))
     fecha_nacimiento = db.Column(db.DateTime)
     genero = db.Column(db.Integer)

@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, redirect, url_for
 from database import db, Usuario_reg, Usuario_emp
+from sqlalchemy import and_, or_
 
 app = Flask(__name__)
 app.secret_key = "a"
@@ -22,32 +23,78 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
-with app.app_context():
-    u1 = Usuario_reg(nombre="andres")
-    u2 = Usuario_reg(nombre="alberto")
-    u3 = Usuario_reg(nombre="soria")
-    u4 = Usuario_reg(nombre="ruiz")
+@app.route("/")
+def index():
+    return render_template("login_client.html")
 
-    e1 = Usuario_emp(nombre="A")
-    e2 = Usuario_emp(nombre="B")
+@app.route("/login", methods=["POST"])
+def login():
 
-    e1.clientes.extend([u1,u2,u3])
-    e2.clientes.extend([u1,u3,u4])
+    correo = request.form["correo"]
+    contraseña = request.form["contraseña"]
+    
+    usuario_reg = db.session.query(Usuario_reg).filter(Usuario_reg.correo == correo, Usuario_reg.contraseña == contraseña)
 
-    db.session.add(u1)
-    db.session.add(u2)
-    db.session.add(u3)
-    db.session.add(u4)
-    db.session.add(e1)
-    db.session.add(e2)
+    usuario_emp = db.session.query(Usuario_reg).filter(Usuario_emp.correo == correo, Usuario_emp.contraseña == contraseña)
 
-    db.session.commit()
+    if usuario_reg.count() == 1:
+        session["iduser"] = usuario_reg[0].id
+        print("Usuario Regular valido")
+        return render_template("login_client.html")
+    elif usuario_emp.count() == 1:   
+        session["iduser"] = usuario_emp[0].id
+        print("Usuario Empresa valido")
+        return render_template("login_client.html")
+    else:
+        print("Usario invalido")
+        return render_template("login_client.html", error=True)
 
 
-    for client in e1.clientes:
-        print("Cliente 1: ", client.nombre)
-    for empresa in u1.seguidos:
-        print("Empresa 1: ", empresa.nombre)
+@app.route("/registro_reg")
+def registrar_us():
+    return render_template("signup_client.html")
+
+@app.route("/registro_emp")
+def registrar_emp():
+    return render_template("signup_empresa.html")
+
+@app.route("/registrar_regular", methods=["POST"])
+def registrar_regular():
+    nombres = request.form["nombres"]
+    apellidos = request.form["apellidos"]
+    nacimiento = request.form["nacimiento"]
+    nacionalidad = request.form["nacionalidad"]
+    genero = int(request.form["genero"])
+    correo = request.form["correo"]
+    nombre_usuario = request.form["nombre_usuario"]
+    contraseña = request.form["contraseña"]
+
+    if db.session.query(Usuario_reg).filter(Usuario_reg.correo == correo).count() == 0 : 
+
+        if db.session.query(Usuario_reg).filter(Usuario_reg.nombre_usuario == nombre_usuario).count() == 0:
+
+            usuario = Usuario_reg(
+                correo=correo, 
+                nombre=nombres, 
+                apellido=apellidos,
+                genero=genero,
+                nombre_usuario=nombre_usuario,
+                fecha_nacimiento = nacimiento,
+                contraseña = contraseña
+                )
+            
+            db.session.add(usuario)
+            db.session.commit()
+
+            return redirect(url_for("login"))
+            
+            print("Usario registado")
+        else:
+            print("Nombre de usuario ya registrado")
+            return redirect(url_for("registro_reg"))
+    else:
+        print("Correo ya registrado")
+        return redirect(url_for("login"))
 
 
 if __name__ == "__main__":
