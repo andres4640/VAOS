@@ -17,12 +17,12 @@
       <div class="col-lg-6 col-md-8 col-10">
         <h1>REGISTRA TU EMPRESA</h1>
         <br>
-        <form>
+        <form action="/registrar_empresa" method="POST">
           <div class="row">
             <div class="col">
               <div class="form-group">
                 <label for="nombre-empresa">Nombre de la empresa</label>
-                <input type="text" class="form-control" id="nombre-empresa">
+                <input type="text" class="form-control" id="nombre-empresa" name="nombre">
               </div>
             </div>
           </div>
@@ -30,26 +30,26 @@
             <div class="col-7">
               <div class="form-group">
                 <label for="ruc">RUC</label>
-                <input type="text" class="form-control" id="ruc">
+                <input type="text" class="form-control" id="ruc" name="ruc">
               </div>
             </div>
             <div class="col-5">
               <div class="form-group">
                 <label for="telefono">Télefono</label>
-                <input type="text" class="form-control" id="telefono">
+                <input type="text" class="form-control" id="telefono" name="telefono">
               </div>
             </div>
           </div>
           
           <div class="form-group">
             <label for="correo">Correo</label>
-            <input type="email" class="form-control" id="correo" placeholder="name@example.com">
+            <input type="email" class="form-control" id="correo" placeholder="name@example.com" name="correo">
           </div>
           <div class="row">
             <div class="col-lg-6 col-md-6">
               <div class="form-group">
                 <label for="contraseña">Contraseña</label>
-                <input type="password" class="form-control" id="contraseña">
+                <input type="password" class="form-control" id="contraseña" name="contraseña">
               </div>
             </div>
             <div class="col-lg-6 col-md-6">

@@ -35,7 +35,7 @@ def login():
     
     usuario_reg = db.session.query(Usuario_reg).filter(Usuario_reg.correo == correo, Usuario_reg.contraseña == contraseña)
 
-    usuario_emp = db.session.query(Usuario_reg).filter(Usuario_emp.correo == correo, Usuario_emp.contraseña == contraseña)
+    usuario_emp = db.session.query(Usuario_emp).filter(Usuario_emp.correo == correo, Usuario_emp.contraseña == contraseña)
 
     if usuario_reg.count() == 1:
         session["iduser"] = usuario_reg[0].id
@@ -86,15 +86,51 @@ def registrar_regular():
             db.session.add(usuario)
             db.session.commit()
 
-            return redirect(url_for("login"))
-            
             print("Usario registado")
+
+            return redirect("/")
+            
+            
         else:
             print("Nombre de usuario ya registrado")
             return redirect(url_for("registro_reg"))
     else:
         print("Correo ya registrado")
-        return redirect(url_for("login"))
+        return redirect(url_for("registro_reg"))
+
+@app.route("/registrar_empresa", methods=["POST"])
+def registrar_empresa():
+
+    nombre = request.form["nombre"]
+    ruc = request.form["ruc"]
+    telefono = request.form["telefono"]
+    correo = request.form["correo"]
+    contraseña = request.form["contraseña"]
+
+    if db.session.query(Usuario_emp).filter(Usuario_emp.correo == correo).count() == 0 :
+        if db.session.query(Usuario_emp).filter(Usuario_emp.ruc == ruc).count() == 0 :
+
+            empresa = Usuario_emp(
+                correo=correo,
+                ruc=ruc,
+                contraseña=contraseña,
+                nombre=nombre,
+                telefono=telefono
+            )
+            
+            db.session.add(empresa)
+            db.session.commit()
+
+            print("Empresa registada")
+            return redirect("/") 
+        else:
+
+            print("RUC ya registrado")
+            return redirect(url_for("registrar_emp")) 
+
+    else:
+        print("Correo ya registrado")
+        return redirect(url_for("registrar_emp"))
 
 
 if __name__ == "__main__":
