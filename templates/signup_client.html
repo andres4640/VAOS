@@ -17,7 +17,7 @@
       <div class="col-lg-6 col-md-8 col-10">
         <h1>REGISTRATE</h1>
         <br>
-        <form action="/registrar_regular" method="POST">
+        <form id ="formulario" action="/registrar_regular" method="POST">
           <div class="row">
             <div class="col-lg-6 col-md-6">
               <div class="form-group">
@@ -36,13 +36,13 @@
             <div class="col">
               <div class="form-group">
                 <label for="fnacimiento">Fecha de nacimiento</label>
-                <input type="date" class="form-control" id="fnacimiento" name="nacimiento">
+                <input type="date" class="form-control" id="fnacimiento" name="nacimiento" min="1900-01-01">
               </div>
             </div>
             <div class="col">
               <div class="form-group">
                 <label for="nacionalidad">Nacionalidad</label>
-                <select class="form-control" id="nacionalidad" name="nacionalidad">
+                <select class="form-control select-client" id="nacionalidad" name="nacionalidad">
                   <option>Perú</option>
                   <option>Brasil</option>
                   <option>Chile</option>
@@ -54,7 +54,7 @@
           </div>
           <div class="form-group">
             <label for="genero">Género</label>
-            <select class="form-control" id="genero" name="genero">
+            <select class="form-control select-client" id="genero" name="genero">
               <option value="1">Masculino</option>
               <option value="2">Femenino</option>
               <option>Otros</option>
@@ -72,13 +72,13 @@
             <div class="col-lg-6 col-md-6">
               <div class="form-group">
                 <label for="password">Contraseña</label>
-                <input type="password" class="form-control" id="password" name="contraseña">
+                <input type="password" class="form-control" id="password" name="password">
               </div>
             </div>
             <div class="col-lg-6 col-md-6">
               <div class="form-group">
                 <label for="password">Repetir contraseña</label>
-                <input type="password" class="form-control" id="password">
+                <input type="password" class="form-control" id="rpassword">
               </div>
             </div>
           </div>
@@ -87,11 +87,13 @@
             <label class="form-check-label" for="terminos"><small>Acepto <strong><a href="">Términos y
                     condiciones</a></strong></small></label>
           </div>
-          <button id="save" type="submit" class="btn btn-dark">Registrar</button>
+          <button id="signup" type="submit" class="btn btn-dark" disabled>Registrar</button>
         </form>
       </div>
     </div>
   </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="../js/signup_client.js"></script>
 </body>
 
 </html>
