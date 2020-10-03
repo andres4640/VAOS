@@ -180,3 +180,7 @@ $("#terminos").on("click", function(){
         $("#signup").attr("disabled",true);
     }
 })
+
+$('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  })

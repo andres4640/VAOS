@@ -6,3 +6,7 @@ body {
 h1 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
+.modal-lg {
+    max-width: 35% !important;
+}
