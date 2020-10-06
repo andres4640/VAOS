@@ -4,7 +4,10 @@ from sqlalchemy import and_, or_
 
 app = Flask(__name__)
 app.secret_key = "a"
+
+
 ENV = "dev"
+
 if ENV == "dev":
     #Base de datos desarrollador, la que estara en la computadora para pruebas
     app.debug = True 
@@ -17,15 +20,18 @@ else:
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #Poner, sino sale error
 
-
 db.init_app(app)
 
 with app.app_context():
     db.create_all()
 
+############################ LOGIN #########################################
 @app.route("/")
 def index():
-    return render_template("login_client.html")
+    if "iduser" in session:
+        return redirect("/principal")
+    else:
+        return render_template("login_client.html")
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -34,29 +40,39 @@ def login():
     contraseña = request.form["contraseña"]
     
     usuario_reg = db.session.query(Usuario_reg).filter(Usuario_reg.correo == correo, Usuario_reg.contraseña == contraseña)
-
     usuario_emp = db.session.query(Usuario_emp).filter(Usuario_emp.correo == correo, Usuario_emp.contraseña == contraseña)
 
     if usuario_reg.count() == 1:
         session["iduser"] = usuario_reg[0].id
+        session["esEmp"] = 0
         print("Usuario Regular valido")
-        return render_template("login_client.html")
+        return redirect(url_for("principal"))
+
     elif usuario_emp.count() == 1:   
         session["iduser"] = usuario_emp[0].id
+        session["esEmp"] = 1
         print("Usuario Empresa valido")
-        return render_template("login_client.html")
+        return redirect(url_for("principal"))
+
     else:
         print("Usario invalido")
-        return render_template("login_client.html", error=True)
+        return render_template("login_client.html", error=True, mensaje="Error en los datos ingresados")
 
 
+############################ REGISTRO DE USUARIOS #########################################
 @app.route("/registro_reg")
 def registrar_us():
-    return render_template("signup_client.html")
+    if "iduser" in session:
+        return redirect("/principal")
+    else:
+        return render_template("signup_client.html")
 
 @app.route("/registro_emp")
 def registrar_emp():
-    return render_template("signup_empresa.html")
+    if "iduser" in session:
+        return redirect("/principal")
+    else:
+        return render_template("signup_empresa.html")
 
 @app.route("/registrar_regular", methods=["POST"])
 def registrar_regular():
@@ -86,7 +102,7 @@ def registrar_regular():
             db.session.add(usuario)
             db.session.commit()
 
-            print("Usario registado")
+            print("Usuario registado")
 
             return redirect("/")
             
@@ -132,6 +148,22 @@ def registrar_empresa():
         print("Correo ya registrado")
         return redirect(url_for("registrar_emp"))
 
+############################ CERRAR SESION #########################################
+
+@app.route("/cerrar_sesion", methods=['GET'])
+def cerrar_sesion():
+    session.clear()
+    return redirect("/")
+
+
+############################ PAG. PRINCIPAL #########################################
+
+@app.route("/principal")
+def principal():
+    if "iduser" in session:
+        return render_template("principal.html")
+    else:
+        return redirect("/")
 
 if __name__ == "__main__":
     app.run()   
