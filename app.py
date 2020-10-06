@@ -4,7 +4,10 @@ from sqlalchemy import and_, or_
 
 app = Flask(__name__)
 app.secret_key = "a"
+
+
 ENV = "dev"
+
 if ENV == "dev":
     #Base de datos desarrollador, la que estara en la computadora para pruebas
     app.debug = True 
@@ -17,12 +20,10 @@ else:
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #Poner, sino sale error
 
-
 db.init_app(app)
 
 with app.app_context():
     db.create_all()
-
 
 ############################ LOGIN #########################################
 @app.route("/")
@@ -43,13 +44,15 @@ def login():
 
     if usuario_reg.count() == 1:
         session["iduser"] = usuario_reg[0].id
+        session["esEmp"] = 0
         print("Usuario Regular valido")
         return redirect(url_for("principal"))
 
     elif usuario_emp.count() == 1:   
         session["iduser"] = usuario_emp[0].id
+        session["esEmp"] = 1
         print("Usuario Empresa valido")
-        return render_template("login_client.html")
+        return redirect(url_for("principal"))
 
     else:
         print("Usario invalido")
@@ -99,7 +102,7 @@ def registrar_regular():
             db.session.add(usuario)
             db.session.commit()
 
-            print("Usario registado")
+            print("Usuario registado")
 
             return redirect("/")
             
