@@ -17,6 +17,9 @@
       <div class="col-lg-10 col-md-10 col-10">
         <h1>INICIAR SESION</h1>
         <br>
+        {% if mensaje %}
+        <p class="message">{{ mensaje | safe }}</p>
+        {% endif %}
         <form action="/login" method="POST">        
           <div class="form-group">
             

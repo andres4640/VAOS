@@ -139,6 +139,7 @@ class Local(db.Model):
         backref="empresa",
         lazy="select"
     )
+    
 
     valoraciones = db.relationship("Valoracion", back_populates="local")
 
