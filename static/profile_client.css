@@ -214,10 +214,10 @@ body {
 }
 
 @media screen and (min-width: 0px) and (max-width: 415px) {
-    .boton-foto {  }
+    .text-info {  }
 }
 @media screen and (min-width: 416px){
-    .boton-foto {  }
+    .text-info { margin-top: 10px; }
 }
 
 .boton-foto {
