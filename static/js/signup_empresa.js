@@ -27,7 +27,7 @@ $("#nombre-empresa").on('blur', function(){
 
 $("#ruc").on('blur', function(){
     var ruc=$("#ruc").val();
-    if(ruc=="" || ruc==null){
+    if(ruc=="" || ruc==null || ruc.length < 11){
         $(this).removeClass("is-valid");
         $(this).addClass("is-invalid");
         validRuc = false;
