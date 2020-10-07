@@ -165,5 +165,14 @@ def principal():
     else:
         return redirect("/")
 
+
+@app.route("/calendario")
+def calendario():
+    if "iduser" in session:
+        return render_template("calendar.html")
+    else:
+        return redirect("/")
+
+
 if __name__ == "__main__":
     app.run()   
