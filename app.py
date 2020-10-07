@@ -173,6 +173,13 @@ def calendario():
     else:
         return redirect("/")
 
+@app.route("/profile_cliente")
+def profile_cliente():
+    if "iduser" in session:
+        return render_template("profile_client.html")
+    else:
+        return redirect("/")
+
 
 if __name__ == "__main__":
     app.run()   
