@@ -143,6 +143,6 @@ $("#terminos").on("click", function(){
     }
 })
 
-$('#myModal').on('shown.bs.modal', function () {
+$('#terminos-modal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
   })
