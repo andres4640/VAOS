@@ -121,7 +121,7 @@ class Local(db.Model):
 
     id_distrito = db.Column(db.Integer, db.ForeignKey("distrito.id")) #FK
     id_empresa = db.Column(db.Integer, db.ForeignKey("usuario_emp.id")) #FK
-
+    
     longitud = db.Column(db.Integer)
     latitud = db.Column(db.Integer)
 
