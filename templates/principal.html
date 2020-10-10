@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" href="../static/principal.css">
+  <link rel="stylesheet" href="../libs/v6.4.3-dist/ol.css">
 </head>
 
 <body>
@@ -22,7 +23,7 @@
       <div class="col-lg-6 col-md-8 col-sm-8 col-6 text-center">
         <div id="head-logo" class="text-center">
           <a href="/principal">
-            <img id="logo" src="{{url_for('static', filename='img/logo.png')}}" id="logohead">
+            <img id="logo" src="../static/img/logo.png" id="logohead">
           </a>
         </div>
       </div>
@@ -38,37 +39,33 @@
 
   </header>
 
-    <div id="mySidebar" class="sidebar">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="/profile_cliente">Perfil</a>
-      <a href="/calendario">Calendario</a>
-      <a href="#">Favoritos</a>
-      <a href="#">Ajustes</a>
-      <a id="logout" href="/cerrar_sesion">Cerrar sesión</a>
-    </div>
+  <div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/profile_cliente">Perfil</a>
+    <a href="/calendario">Calendario</a>
+    <a href="#">Favoritos</a>
+    <a href="#">Ajustes</a>
+    <a id="logout" href="/cerrar_sesion">Cerrar sesión</a>
+  </div>
 
 
-    <div id="main">
+  <div class="btn-group btn-group-toggle btn-block" id="opcion-mapa-lista" data-toggle="buttons">
+    <label class="btn btn-secondary active">
+      <input type="radio" name="options" id="option1" checked> Mapa
+    </label>
+    <label class="btn btn-secondary active">
+      <input type="radio" name="options" id="option2"> Lista
+    </label>
+  </div>
+    
+  
+  <div class="container">
+    <div id="mapa"></div>
 
-      <div class="btn-group btn-group-toggle btn-block" id="opcion-mapa-lista" data-toggle="buttons">
-        <label class="btn btn-secondary active">
-          <input type="radio" name="options" id="option1" checked> Mapa
-        </label>
-        <label class="btn btn-secondary active">
-          <input type="radio" name="options" id="option2"> Lista
-        </label>
-      </div>
-      
-      <div>
-        <div class="text-center">
-          <img id="mapa" src="{{url_for('static', filename='img/mapa.png')}}" class="rounded" alt="...">
-        </div>
-
-      </div>
-
-    </div>
-
-  <script src="{{ url_for('static', filename='js/principal.js')}}"></script>
+  </div>
+  
+  <script src="../static/js/principal.js"></script>
+  <script src="../libs/v6.4.3-dist/ol.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
