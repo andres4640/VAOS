@@ -178,4 +178,6 @@ h1 {
     .oculto { display: none !important; }
 }
 
-
+.mapa {
+    width: auto;
+}
