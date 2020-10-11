@@ -60,7 +60,6 @@
     transition: margin-left .5s; /* If you want a transition effect */
     padding-left: 30px;
     padding-right: 30px;
-    padding-bottom: 100px;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
