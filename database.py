@@ -7,7 +7,6 @@ sigue = db.Table(
     db.Column("id_regular", db.Integer, db.ForeignKey("usuario_reg.id")),
     db.Column("id_empresa", db.Integer, db.ForeignKey("usuario_emp.id"))
 )
-
 tiene_ambiente = db.Table(
     "tiene_ambiente",
     db.Column("id_local", db.Integer, db.ForeignKey("local.id")),
@@ -71,7 +70,7 @@ class Usuario_emp(db.Model):
     __tablename__ = "usuario_emp"
 
     id = db.Column(db.Integer, primary_key=True)
-    ruc = db.Column(db.Integer)
+    ruc = db.Column(db.BigInteger)
     contraseña = db.Column(db.String(20))
     nombre = db.Column(db.String(30))
     correo = db.Column(db.String(30), unique=True)
@@ -122,8 +121,8 @@ class Local(db.Model):
     id_distrito = db.Column(db.Integer, db.ForeignKey("distrito.id")) #FK
     id_empresa = db.Column(db.Integer, db.ForeignKey("usuario_emp.id")) #FK
     
-    longitud = db.Column(db.Integer)
-    latitud = db.Column(db.Integer)
+    longitud = db.Column(db.BigInteger)
+    latitud = db.Column(db.BigInteger)
 
     musicas = db.relationship(
         "Tipo_musica",
