@@ -76,8 +76,6 @@
     font-size: 18px;
 }
 
-
-
 #head-logo {
     transition: margin-left .5s;
     padding: 25px;
@@ -176,15 +174,10 @@ h1 {
     padding-right: 45px;
 }
 
-#mapa {
-    margin-top: 5px;
-    width: 90%;
-    height: 90%;
-}
-
-
 @media screen and (min-width: 0px) and (max-width: 415px) {
     .oculto { display: none !important; }
 }
 
-
+.mapa {
+    width: auto;
+}
