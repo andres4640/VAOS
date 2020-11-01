@@ -8,7 +8,9 @@
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <link rel="stylesheet" href="../static/profile_client.css">
+  <link rel="stylesheet" href="../static/profile_local.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
 </head>
 
 <body>
@@ -53,47 +55,122 @@
 
       <div class="container user-container shadow p-3 mb-5 rounded-lg">
         <div class="row user-info">
-          <div class="col-sm-6 col-12 text-center">
+          <div class="col-sm-3 col-12 text-center">
             <img src="../static/img/user.png" alt="" class="user_foto">
-            <button type="button" class="btn btn-dark boton-foto">+</button>
           </div>
           
-
-          {% for us in usuario %}
-          <div class="col-sm-6 col-12 texto-info">
+          <div class="col-sm-9 col-12 texto-info">
 
             <div class="row">
               <div class="col-8">
-                <h2>{{ us.nombre | safe}} {{ us.apellido | safe}}</h2>
+                <h2>NOMBRE LOCAL</h2>
+                
               </div>
               <div class="col-4">
-                <div class="seguidos text-center">
-                  <small class="text-muted"> Seguidos </small>
-                  <h2>{{ seguidos }}</h2>
+                <div class="tipo text-center">
+                    <i class="fa fa-glass" aria-hidden="true"></i>
+                    <i class="fa fa-music" aria-hidden="true"></i>
+                </div>
+                <div class="tipo_texto text-center">
+                    <strong>BAR</strong>
                 </div>
               </div>
+              
             </div>
 
-            <small class="text-muted">Usuario: </small><small class="text-muted">{{ us.nombre_usuario | safe}}</small> <br>
-            <small class="text-muted">Correo: </small><small class="text-muted">{{ us.correo | safe}}</small> <br><br>
+            <i class="fa fa-map-marker" aria-hidden="true"></i>    <small class="text-muted">Dirección: </small><small class="text-muted">calle las pizzas</small> <br>
+            <i class="fa fa-clock-o" aria-hidden="true"></i>    <small class="text-muted">Horario: </small><small class="text-muted">8:00 - 10:00</small> <br> <br>
             
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span> <small class="text-muted">10 valoraciones </small>
+
             <!--
             <p>Fecha de nacimiento: <small>05/09/1999</small></p>
             <p>Nacionalidad: <small>05/09/1999</small></p>
             <p>Género: <small>05/09/1999</small></p>
             -->
             <div class="info">
-              <small>Fecha de nacimiento: </small> <small>{{ us.fecha_nacimiento | safe}}</small> <br>
-              <small>Nacionalidad: </small> <small>(Poner Nacionalidad)</small> <br>
-              {% if us.genero == 1 %}
-                <small>Género: </small> <small>Masculino</small>
-                {% endif %}
-              {% if us.genero == 2 %}
-                <small>Género: </small> <small>Femenino</small>
-                {% endif %}
+                <small>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pellentesque, mi a facilisis varius, 
+                    nulla nibh tincidunt sapien, quis scelerisque sem dolor in augue. Quisque in justo ornare, 
+                    pellentesque ante eu, mollis purus.
+                </small>
             </div>
-            {% endfor %}
+            <br>
+            <div class="carta">
+                <div class="TITULO_CARTA">
+                    <strong>CARTA</strong>
+                </div>
+
+                <div class=swipe>
+
+                    <img id="myImg" src="../static/img/user.png" alt="" class="carta_foto">
+
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+                        <span class="close">&times;</span>
+                        <img class="modal-content" id="img01">
+                        <div id="caption"></div>
+                    </div>
+
+                    <img id="myImg" src="../static/img/user.png" alt="" class="carta_foto">
+
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+                        <span class="close">&times;</span>
+                        <img class="modal-content" id="img01">
+                        <div id="caption"></div>
+                    </div>
+
+                    <img id="myImg" src="../static/img/user.png" alt="" class="carta_foto">
+
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+                        <span class="close">&times;</span>
+                        <img class="modal-content" id="img01">
+                        <div id="caption"></div>
+                    </div>
+                    
+                </div>
+
+            </div>
             
+            <br>
+
+            <div class="valoraciones">
+                <div class="TITULO_valoraciones">
+                    <strong>VALORACIONES</strong>
+                </div>
+
+                <div class="comentarios">
+                    <div class="row justify-content-center">
+                        <div class="col-2" style="text-align: center;">
+                            <img src="../static/img/user.png" alt="" class="user_foto_mini">
+                        </div>
+                        
+                        <div class="col-8 texto_comentario">
+
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span> <br>
+
+                            <small>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pellentesque, mi a facilisis varius, 
+                                nulla nibh tincidunt sapien,
+                            </small>
+                        </div>  
+                        
+                    </div>
+                </div>
+
+                
+
+            </div>
 
           </div>
         </div>
@@ -107,6 +184,29 @@
         <small>Copyright &copy; VAOS</small>
       </div>
     </footer>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+        
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = document.getElementById("myImg");
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+        img.onclick = function(){
+          modal.style.display = "block";
+          modalImg.src = this.src;
+          captionText.innerHTML = this.alt;
+        }
+        
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() { 
+          modal.style.display = "none";
+        }
+        </script>
 
   <script src="../static/js/principal.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
