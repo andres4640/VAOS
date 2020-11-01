@@ -17,26 +17,26 @@
       <div class="col-lg-6 col-md-8 col-10">
         <h1>NUEVO LOCAL</h1>
         <br>
-        <form>
+        <form action="/registrar_local_vista/registrar" method="POST">
           <div class="form-group">
                 <label for="nombre">Nombre del local</label>
-                <input type="text" class="form-control" id="nombre">
+                <input type="text" class="form-control" id="nombre" name="nombre">
           </div>
           <div class="form-group">
             <label for="ubicacion">Ubicación del local</label>
-            <input type="text" class="form-control" id="ubicacion">
+            <input type="text" class="form-control" id="ubicacion" name="direccion">
           </div>
           <div class="row">
             <div class="col">
               <div class="form-group">
                 <label for="hapertura">Hora de apertura</label>
-                <input type="time" class="form-control" id="hapertura">
+                <input type="time" class="form-control" id="hapertura" name="horaApertura">
               </div>
             </div>
             <div class="col">
               <div class="form-group">
                 <label for="hcierre">Hora de cierre</label>
-                <input type="time" class="form-control" id="hcierre">
+                <input type="time" class="form-control" id="hcierre" name="horaCierre">
               </div>
             </div>
           </div>
@@ -44,54 +44,59 @@
             <div class="col">
               <div class="form-gruop">
                 <label for="tpambiente">Tipo de ambiente</label>
+                {% for amb in lista_ambientes %}
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="casual">
+                  <input class="form-check-input" type="checkbox" value= "{{amb.id | safe}}" id="casual" name="ambientes">
                   <label class="form-check-label" for="defaultCheck1">
-                    Casual
-                  </label>
+                    {{ amb.ambiente | safe}}
+                  </label> 
                 </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="cocktail">
+                {% endfor %}
+
+                <!-- <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="2" id="cocktail" name="ambientes">
                   <label class="form-check-label" for="defaultCheck1">
                     Cocktail
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="internacional">
+                  <input class="form-check-input" type="checkbox" value="3" id="internacional" name="ambientes">
                   <label class="form-check-label" for="defaultCheck1">
                     Internacional
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="lgbt">
+                  <input class="form-check-input" type="checkbox" value="4" id="lgbt" name="ambientes">
                   <label class="form-check-label" for="defaultCheck1">
                     LGBT
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="underground">
+                  <input class="form-check-input" type="checkbox" value="5" id="underground" name="ambientes">
                   <label class="form-check-label" for="defaultCheck1">
                     Underground
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="upscale">
+                  <input class="form-check-input" type="checkbox" value="6" id="upscale" name="ambientes">
                   <label class="form-check-label" for="defaultCheck1">
                     Upscale
                   </label>
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="col">
               <div class="form-group">
                 <label for="tpmusica">Tipo de música</label>
+                {% for mus in lista_musica %}
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="70-80's">
+                  <input class="form-check-input" type="checkbox" value= "{{mus.id | safe}}" id="cocktail" name="musicas">
                   <label class="form-check-label" for="defaultCheck1">
-                    70-80's
+                    {{ mus.musica | safe }}
                   </label>
                 </div>
-                <div class="form-check">
+                {% endfor %}
+                <!-- <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="" id="cocktail">
                   <label class="form-check-label" for="defaultCheck1">
                     Comercial
@@ -144,7 +149,7 @@
                   <label class="form-check-label" for="defaultCheck1">
                     Otro
                   </label>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -152,7 +157,7 @@
           <br>
           <div class="form-group">
             <label for="descripcion">Descripción</label>
-            <textarea class="form-control" id="descripcion" rows="8"></textarea>
+            <textarea class="form-control" id="descripcion" rows="8" name="descripcion"></textarea>
             </select>
           </div>
           <div class="form-group">

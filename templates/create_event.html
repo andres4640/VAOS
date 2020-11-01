@@ -17,30 +17,30 @@
       <div class="col-lg-6 col-md-8 col-10">
         <h1>NUEVO EVENTO</h1>
         <br>
-        <form>
+        <form action="/registrar_evento_vista/registrar-evento" method="POST">
           <div class="form-group">
                 <label for="nombre">Nombre del evento</label>
-                <input type="text" class="form-control" id="nombre">
+                <input type="text" class="form-control" id="nombre" name="nombre">
           </div>
           <div class="form-group">
             <label for="local">Local</label>
-            <select class="form-control" id="local">
-              <option>Barranco</option>
-              <option>Miraflores</option>
-              <option>Surco</option>
+            <select class="form-control" id="local" name="local">
+              {% for local in lista_locales %}
+              <option value="{{ local.id | safe }}">{{ local.nombre | safe }}</option>
+              {% endfor %}
             </select>
           </div>
           <div class="row">
             <div class="col">
               <div class="form-group">
                 <label for="finicio">Fecha de inicio</label>
-                <input type="date" class="form-control" id="finicio">
+                <input type="date" class="form-control" id="finicio" name="fechaInicio">
               </div>
             </div>
             <div class="col">
               <div class="form-group">
                 <label for="hinicio">Hora de inicio</label>
-                <input type="time" class="form-control" id="hinicio">
+                <input type="time" class="form-control" id="hinicio" name="horaInicio">
               </div>
             </div>
           </div>
@@ -48,13 +48,13 @@
             <div class="col">
               <div class="form-group">
                 <label for="ffin">Fecha de fin</label>
-                <input type="date" class="form-control" id="ffin">
+                <input type="date" class="form-control" id="ffin" name="fechaFin">
               </div>
             </div>
             <div class="col">
               <div class="form-group">
                 <label for="hfin">Hora de fin</label>
-                <input type="time" class="form-control" id="hfin">
+                <input type="time" class="form-control" id="hfin" name="horaFin">
               </div>
             </div>
           </div>
@@ -62,22 +62,13 @@
             <div class="col">
               <div class="form-group">
                 <label for="precio">Precio de entrada</label>
-                <input type="number" class="form-control" id="precio" min="0">
-              </div>
-            </div>
-            <div class="col">
-              <div class="form-group">
-                <label for="moneda">Tipo de moneda</label>
-                <select class="form-control" id="moneda">
-                  <option>Dólares ($)</option>
-                  <option selected>Soles (S/)</option>
-                </select>
+                <input type="number" class="form-control" id="precio" min="0" name="precio">
               </div>
             </div>
           </div>
           <div class="form-group">
             <label for="descripcion">Descripción</label>
-            <textarea class="form-control" id="descrip" rows="8"></textarea>
+            <textarea class="form-control" id="descrip" rows="8" name=descripcion></textarea>
             </select>
           </div>
           <div class="form-group">
