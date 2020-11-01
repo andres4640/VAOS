@@ -37,7 +37,7 @@ class Tiene_redes(db.Model):
 
     id_empresa = db.Column(db.Integer, db.ForeignKey("usuario_emp.id"), primary_key=True)
     id_red = db.Column(db.Integer, db.ForeignKey("tipo_red.id"), primary_key=True)
-    url = db.Column(db.String(200))
+    url = db.Column(db.String(400))
 
     empresa = db.relationship("Usuario_emp", back_populates="redes")
     red = db.relationship("Tipo_red", back_populates="red_empresas")
@@ -49,13 +49,13 @@ class Usuario_reg(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     correo = db.Column(db.String(100), unique=True)
-    contraseña = db.Column(db.String(20))
-    nombre = db.Column(db.String(30))
-    nombre_usuario = db.Column(db.String(30))
-    apellido = db.Column(db.String(30))
+    contraseña = db.Column(db.String(50))
+    nombre = db.Column(db.String(50))
+    nombre_usuario = db.Column(db.String(50))
+    apellido = db.Column(db.String(50))
     fecha_nacimiento = db.Column(db.DateTime)
     genero = db.Column(db.Integer)
-    fotoPerfil = db.Column(db.String(200))
+    fotoPerfil = db.Column(db.String(400))
     id_nacionalidad = db.Column(db.Integer, db.ForeignKey("nacionalidad.id")) # FK
 
     seguidos = db.relationship(
@@ -71,9 +71,9 @@ class Usuario_emp(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     ruc = db.Column(db.BigInteger)
-    contraseña = db.Column(db.String(20))
-    nombre = db.Column(db.String(30))
-    correo = db.Column(db.String(30), unique=True)
+    contraseña = db.Column(db.String(50))
+    nombre = db.Column(db.String(100))
+    correo = db.Column(db.String(100), unique=True)
     telefono = db.Column(db.Integer)
 
     redes = db.relationship("Tiene_redes", back_populates="empresa")
@@ -87,7 +87,7 @@ class Usuario_emp(db.Model):
 class Nacionalidad(db.Model):
     __tablename__ = "nacionalidad"
     id = db.Column(db.Integer, primary_key=True)
-    pais = db.Column(db.String(20)) 
+    pais = db.Column(db.String(30)) 
 
     usuarios = db.relationship(
         "Usuario_reg", 
@@ -99,7 +99,7 @@ class Tipo_red(db.Model):
     __tablename__ = "tipo_red"
 
     id = db.Column(db.Integer, primary_key=True)
-    redsocial = db.Column(db.String(20))
+    redsocial = db.Column(db.String(30))
 
     red_empresas = db.relationship("Tiene_redes", back_populates="red")
 
@@ -110,11 +110,11 @@ class Local(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
     direccion = db.Column(db.String(100))
-    nombre = db.Column(db.String(15))
+    nombre = db.Column(db.String(100))
     descripcion = db.Column(db.String(1000))
     horaApertura = db.Column(db.String(10))
     horaCierre = db.Column(db.String(10))
-    fotoPresentacion = db.Column(db.String(200))
+    fotoPresentacion = db.Column(db.String(400))
 
     #id_fotocarta = db.Column(db.Integer, db.ForeignKey("foto_carta.id_local")) #FK
 
@@ -174,11 +174,11 @@ class Evento(db.Model):
     __tablename__ = "evento"
 
     id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(30))
+    nombre = db.Column(db.String(200))
     descripcion = db.Column(db.String(1000))
-    fechaInicio = db.Column(db.String(15))
-    fechaFin = db.Column(db.String(15))
-    imagen = db.Column(db.String(200))
+    fechaInicio = db.Column(db.DateTime)
+    fechaFin = db.Column(db.DateTime)
+    imagen = db.Column(db.String(400))
     precio = db.Column(db.Integer)
     id_local = db.Column(db.Integer, db.ForeignKey("local.id")) #Fk
 
@@ -186,4 +186,4 @@ class Foto_carta(db.Model):
     __tablename__ = "foto_carta"
     id = db.Column(db.Integer, primary_key=True)
     id_local = db.Column(db.Integer, db.ForeignKey("local.id"))
-    url = db.Column(db.String(200))
+    url = db.Column(db.String(400))
