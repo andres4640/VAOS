@@ -15,41 +15,8 @@
 </head>
 
 <body>
-  <header id="masthead" data-sticky="sticky-scroll-up">
-    <div class="row">
-
-      <div class="col-lg-3 col-md-2 col-sm-2 col-3">
-        <button class="openbtn topleft" onclick="openNav()">&#9776;</button>
-      </div>
-
-      <div class="col-lg-6 col-md-8 col-sm-8 col-6 text-center">
-        <div id="head-logo" class="text-center">
-          <a href="/principal">
-            <img id="logo" src="../static/img/logo.png" id="logohead">
-          </a>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-2 col-sm-2 d-none d-sm-block">
-        <div id="wrap" class="topright ">
-          <form action="" autocomplete="on">
-          <input id="search" name="search" type="text" placeholder="Search"><input id="search_submit" value="Rechercher" type="submit">
-          </form>
-        </div>
-      </div>
-    </div>
-
-  </header>
-
-  <div id="mySidebar" class="sidebar">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="/profile_cliente">Perfil</a>
-    <a href="/calendario">Calendario</a>
-    <a href="#">Favoritos</a>
-    <a href="#">Ajustes</a>
-    <a id="logout" href="/cerrar_sesion">Cerrar sesión</a>
-  </div>
-
+  <div data-include="header_client.html"></div>
+  
   <div id="main">
     <div class="btn-group btn-group-toggle btn-block" id="opcion-mapa-lista" data-toggle="buttons">
       <label class="btn btn-secondary active">
