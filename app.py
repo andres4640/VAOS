@@ -14,7 +14,11 @@ ENV = "dev"
 if ENV == "dev":
     #Base de datos desarrollador, la que estara en la computadora para pruebas
     app.debug = True 
+<<<<<<< HEAD
     app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:123456@localhost/prueba" #Direccion de la base de datos local
+=======
+    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:12345@localhost/prueba" #Direccion de la base de datos local
+>>>>>>> tovar
     #postressql:://postgress:[PASSWORD]@localhost/[BD_NAME]
 else:
     app.debug = False
