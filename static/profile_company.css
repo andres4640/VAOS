@@ -114,9 +114,10 @@ h1 {
 
 .user_foto {
     /*border-radius: 200px;*/
-    width: 100%;
+    /*width: 100%;
     /*margin: 0px 10px 0px 10px;*/
-    height: 200px;
+    height: 150px;
+    padding: 30px;
 }
 
 body {
@@ -186,3 +187,16 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
+  @media screen and (max-width: 480px){
+    #portada
+    {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }}
+
+.local
+{
+    margin: 20px;
+}
