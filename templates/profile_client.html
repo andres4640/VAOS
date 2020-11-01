@@ -48,65 +48,61 @@
     <a id="logout" href="/cerrar_sesion">Cerrar sesión</a>
   </div>
 
+  <div id="main">
 
-    <div id="main">
-
-      <div class="container user-container shadow p-3 mb-5 rounded-lg">
-        <div class="row user-info">
-          <div class="col-sm-6 col-12 text-center">
-            <img src="../static/img/user.png" alt="" class="user_foto">
-            <button type="button" class="btn btn-dark boton-foto">+</button>
-          </div>
-          
-
-          {% for us in usuario %}
-          <div class="col-sm-6 col-12 texto-info">
-
-            <div class="row">
-              <div class="col-8">
-                <h2>{{ us.nombre | safe}} {{ us.apellido | safe}}</h2>
-              </div>
-              <div class="col-4">
-                <div class="seguidos text-center">
-                  <small class="text-muted"> Seguidos </small>
-                  <h2>{{ seguidos }}</h2>
-                </div>
-              </div>
-            </div>
-
-            <small class="text-muted">Usuario: </small><small class="text-muted">{{ us.nombre_usuario | safe}}</small> <br>
-            <small class="text-muted">Correo: </small><small class="text-muted">{{ us.correo | safe}}</small> <br><br>
-            
-            <!--
-            <p>Fecha de nacimiento: <small>05/09/1999</small></p>
-            <p>Nacionalidad: <small>05/09/1999</small></p>
-            <p>Género: <small>05/09/1999</small></p>
-            -->
-            <div class="info">
-              <small>Fecha de nacimiento: </small> <small>{{ us.fecha_nacimiento | safe}}</small> <br>
-              <small>Nacionalidad: </small> <small>(Poner Nacionalidad)</small> <br>
-              {% if us.genero == 1 %}
-                <small>Género: </small> <small>Masculino</small>
-                {% endif %}
-              {% if us.genero == 2 %}
-                <small>Género: </small> <small>Femenino</small>
-                {% endif %}
-            </div>
-            {% endfor %}
-            
-
-          </div>
+    <div class="container user-container shadow p-3 mb-5 rounded-lg">
+      <div class="row user-info">
+        <div class="col-sm-6 col-12 text-center">
+          <img src="../static/img/user.png" alt="" class="user_foto">
+          <button type="button" class="btn btn-dark boton-foto">+</button>
         </div>
-  
-      </div>
+        
+        {% for us in usuario %}
+        <div class="col-sm-6 col-12 texto-info">
 
+          <div class="row">
+            <div class="col-8">
+              <h2>{{ us.nombre | safe}} {{ us.apellido | safe}}</h2>
+            </div>
+            <div class="col-4">
+              <div class="seguidos text-center">
+                <small class="text-muted"> Seguidos </small>
+                <h2>{{ seguidos }}</h2>
+              </div>
+            </div>
+          </div>
+
+          <small class="text-muted">Usuario: </small><small class="text-muted">{{ us.nombre_usuario | safe}}</small> <br>
+          <small class="text-muted">Correo: </small><small class="text-muted">{{ us.correo | safe}}</small> <br><br>
+          
+          <!--
+          <p>Fecha de nacimiento: <small>05/09/1999</small></p>
+          <p>Nacionalidad: <small>05/09/1999</small></p>
+          <p>Género: <small>05/09/1999</small></p>
+          -->
+          <div class="info">
+            <small>Fecha de nacimiento: </small> <small>{{ us.fecha_nacimiento | safe}}</small> <br>
+            <small>Nacionalidad: </small> <small>(Poner Nacionalidad)</small> <br>
+            {% if us.genero == 1 %}
+              <small>Género: </small> <small>Masculino</small>
+            {% endif %}
+            {% if us.genero == 2 %}
+              <small>Género: </small> <small>Femenino</small>
+            {% endif %}
+          </div>
+          {% endfor %}
+          
+        </div>
+      </div>
     </div>
 
-    <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
-      <div class="container text-center">
-        <small>Copyright &copy; VAOS</small>
-      </div>
-    </footer>
+  </div>
+
+  <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+    <div class="container text-center">
+      <small>Copyright &copy; VAOS</small>
+    </div>
+  </footer>
 
   <script src="../static/js/principal.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
