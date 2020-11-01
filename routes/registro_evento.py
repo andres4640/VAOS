@@ -4,11 +4,15 @@ from datetime import datetime
 @routes.route("/registrar_evento_vista")
 def registrar_evento_vista():
     if "iduser" in session:
-        usuario_emp = db.session.query(Usuario_emp).filter(Usuario_emp.id == session["iduser"])[0]
-        lista_locales = usuario_emp.locales
-        return render_template("create_event.html", lista_locales=lista_locales)
+        if session["esEmp"] == 1:
+            usuario_emp = db.session.query(Usuario_emp).filter(Usuario_emp.id == session["iduser"])[0]
+            lista_locales = usuario_emp.locales
+            return render_template("create_event.html", lista_locales=lista_locales)
+        else: 
+            return redirect("/")
     else:
         return redirect("/")
+        
 @routes.route("/registrar_evento_vista/registrar-evento", methods=["POST"])
 def registrar_evento():
     if "iduser" in session:

@@ -3,9 +3,12 @@ from . import *
 @routes.route("/registrar_local_vista")
 def registrar_local_vista():
     if "iduser" in session:
-        lista_ambiente = db.session.query(Tipo_ambiente)
-        lista_musicas = db.session.query(Tipo_musica)
-        return render_template("create_local.html", lista_ambientes=lista_ambiente,lista_musica=lista_musicas)
+        if session["esEmp"] == 1:
+            lista_ambiente = db.session.query(Tipo_ambiente)
+            lista_musicas = db.session.query(Tipo_musica)
+            return render_template("create_local.html", lista_ambientes=lista_ambiente,lista_musica=lista_musicas)
+        else:
+            return redirect("/")
     else:
         return redirect("/")
 
@@ -20,6 +23,7 @@ def registrar_local():
                 direccion = request.form["direccion"]
                 horaApertura = request.form["horaApertura"]
                 horaCierre = request.form["horaCierre"]
+                tipoLocal = request.form["tipo_local"]
 
                 # Falta distrito - direccion
                 ambientes = request.form.getlist("ambientes")   # La musica es ingresada mediante CheckBox y se pueden escoger varias
@@ -33,6 +37,7 @@ def registrar_local():
                     horaApertura = horaApertura,
                     horaCierre = horaCierre,
                     id_empresa = session["iduser"],
+                    tipoLocal = tipoLocal
                 )
 
                 for amb in ambientes:
@@ -44,6 +49,8 @@ def registrar_local():
 
                 db.session.add(local)
                 db.session.commit()
+
+                flash("Local creado exitosamente")
                 return redirect("/")
         else:
             return redirect("/")

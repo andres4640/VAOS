@@ -115,6 +115,7 @@ class Local(db.Model):
     horaApertura = db.Column(db.String(10))
     horaCierre = db.Column(db.String(10))
     fotoPresentacion = db.Column(db.String(400))
+    tipoLocal = db.Column(db.String(10))
 
     #id_fotocarta = db.Column(db.Integer, db.ForeignKey("foto_carta.id_local")) #FK
 

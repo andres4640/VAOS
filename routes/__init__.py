@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, url_for, Blueprint
+from flask import Flask, render_template, request, session, redirect, url_for, Blueprint, flash
 from database import db, Usuario_reg, Usuario_emp, Tipo_ambiente, Tipo_musica, Tipo_red, Nacionalidad, Valoracion, Local, Evento
 from sqlalchemy import and_, or_
 
