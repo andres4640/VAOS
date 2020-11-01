@@ -6,7 +6,6 @@ from routes import *
 
 app = Flask(__name__)
 app.secret_key = "a"
-app.register_blueprint(routes)
 
 
 ENV = "dev"
@@ -14,7 +13,7 @@ ENV = "dev"
 if ENV == "dev":
     #Base de datos desarrollador, la que estara en la computadora para pruebas
     app.debug = True 
-    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:root@localhost/prueba" #Direccion de la base de datos local
+    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:soporte123@localhost/prueba" #Direccion de la base de datos local
     #postressql:://postgress:[PASSWORD]@localhost/[BD_NAME]
 else:
     app.debug = False
@@ -27,6 +26,7 @@ db.init_app(app)
 
 with app.app_context():
     db.create_all()
+app.register_blueprint(routes)
 
 @app.route("/cerrar_sesion", methods=['GET'])
 def cerrar_sesion():
