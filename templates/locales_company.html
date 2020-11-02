@@ -42,29 +42,37 @@
 
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="/profile_company">Perfil</a>
+        <a href="/profile_empresa">Perfil</a>
         <a href="/locales">Locales</a>
-        <a href="#">Eventos</a>
+        <a href="/eventos">Eventos</a>
         <a href="#">Estadísticas</a>
         <a href="#">Ajustes</a>
-        <a id="logout" href="#">Cerrar sesión</a>
+        <a id="logout" href="/cerrar_sesion">Cerrar sesión</a>
     </div>
 
 
     <div id="main">
-
         <div class="container user-container shadow p-3 mb-5 rounded-lg">
             <div class="row justify-content-around titulo">
                 
                 <div class="col-6">
                     <h2><strong >LOCALES</strong></h2>
-                </div>    
-
+                </div>
+                
+                
                 <div class="col-6">
-                    <button type="button" class="btn btn-dark">Crear local</button>
-                </div>   
-
+                    <a href="/registrar_local_vista"><button type="button" class="btn btn-dark">Crear local</button></a>
+                </div> 
             </div>
+                    {% with mensaje = get_flashed_messages(category_filter=["exito_local"]) %}
+                        {% if mensaje %}
+                            <div class="alert alert-success" role="alert">
+                            {%- for men in mensaje %}
+                                <p>{{men | safe}}</p>
+                            {% endfor -%}
+                            </div>
+                        {% endif %}
+                    {% endwith %}
 
             <!---
             <div class="row locales">
@@ -74,16 +82,19 @@
                 </div>
                 
             </div> -->
+
             <div class="container py-4">
                 <div class="card-deck-wrapper">
                     <div class="card-deck">
+                        {% for local in lista_locales %}
                         <div class="card p-4">
-                            <a class="card-block stretched-link text-decoration-none text-reset" href="/">
-                                <h4 class="card-title">DANSZA</h4>
-                                <p class="card-text">01, Barranco 15047</p>
+                            <a class="card-block stretched-link text-decoration-none text-reset" href="/profile_local?localid={{local.id}}">
+                                <h4 class="card-title">{{ local.nombre | safe }}</h4>
+                                <p class="card-text">{{ local.direccion | safe }}</p>
                             </a>
                         </div>
-                        <div class="card p-4">
+                        {% endfor %}
+                        <!-- <div class="card p-4">
                             <a class="card-block stretched-link text-decoration-none text-reset" href="/">
                                 <h4 class="card-title">MIA</h4>
                                 <p class="card-text">Jirón Monterrey 170, Santiago de Surco 15038</p>
@@ -94,7 +105,7 @@
                                 <h4 class="card-title">MR FISH</h4>
                                 <p class="card-text">calle 7 , 8050 urb. Pro 2da estapa Lima, 15307</p>
                             </a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
               </div>

@@ -10,6 +10,9 @@ from .calendario import *
 from .pag_principal import * 
 from .perfil_cliente import * 
 from .perfil_empresa import * 
+from .perfil_local import * 
 from .registro_local import * 
 from .registro_evento import * 
+from .locales_company import * 
+from .eventos_company import * 
 

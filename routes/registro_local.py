@@ -50,8 +50,8 @@ def registrar_local():
                 db.session.add(local)
                 db.session.commit()
 
-                flash("Local creado exitosamente")
-                return redirect("/")
+                flash("Local creado exitosamente", "exito_local")
+                return redirect("/locales")
         else:
             return redirect("/")
     else:

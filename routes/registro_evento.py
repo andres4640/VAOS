@@ -43,8 +43,8 @@ def registrar_evento():
                 
                 db.session.add(evento)
                 db.session.commit()
-
-                return redirect("/")
+                flash("Evento creado exitosamente", "exito_evento")
+                return redirect("/eventos")
 
         else:
             return redirect("/")

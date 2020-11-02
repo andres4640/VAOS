@@ -26,7 +26,8 @@ def login():
         session["iduser"] = usuario_emp[0].id
         session["esEmp"] = 1
         print("Usuario Empresa valido")
-        return redirect(url_for("routes.principal"))
+        #return redirect(url_for("routes.principal"))
+        return redirect(url_for("routes.profile_empresa"))
 
     else:
         print("Usario invalido")
