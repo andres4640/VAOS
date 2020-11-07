@@ -1,24 +1,12 @@
 window.onload = init;
 
-function init() {
-    const map = new ol.Map({
-        view: new ol.View({
-            center: [-8574833.568028785, -1359643.0389284105],
-            zoom: 20,
-            maxZoom: 30,
-            minZoom: 4
-        }),
-        layers: [
-            new ol.layer.Tile({
-                source: new ol.source.OSM()
-            })
-        ],
-        target: 'mapa'
-    })
+let map;
 
-    map.on('click', function(evt) {
-        console.log(evt.coordinate);
-    })
+function init() {
+  map = new google.maps.Map(document.getElementById("mapa"), {
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 8,
+  });
 }
 /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
 function openNav() {
