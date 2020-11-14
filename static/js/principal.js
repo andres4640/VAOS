@@ -1,8 +1,8 @@
-window.onload = init;
+window.onload = initMap;
 
 let map;
 
-function init() {
+function initMap() {
   map = new google.maps.Map(document.getElementById("mapa"), {
     center: { lat: -34.397, lng: 150.644 },
     zoom: 8,
