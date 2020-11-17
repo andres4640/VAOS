@@ -292,9 +292,25 @@ body {
     }
   }
 
-
   .texto_comentario {
     background-color: rgba(221, 221, 221, 0.5);
     height: auto;
     border-radius: 10px;
+}
+
+.nueva-valoracion {
+    text-align: right;
+}
+
+.stars-new-review {
+    font-size:40px;
+    cursor:pointer;
+}
+
+.checked {
+    color: orange;
+}
+
+#reviewFormModal {
+    background-color: rgba(0,0,0,0.2) !important; /* Black w/ opacity */
 }
