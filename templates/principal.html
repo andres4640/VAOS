@@ -31,7 +31,6 @@
         </div>
       </div>
     </div>
-
   </header>
 
   <div id="mySidebar" class="sidebar">
@@ -41,25 +40,190 @@
     <a href="#">Favoritos</a>
     <a href="#">Ajustes</a>
     <a id="logout" href="/cerrar_sesion">Cerrar sesión</a>
-  </div>
-
-
-  <div class="btn-group btn-group-toggle btn-block" id="opcion-mapa-lista" data-toggle="buttons">
-    <label class="btn btn-secondary active">
-      <input type="radio" name="options" id="option1" checked> Mapa
-    </label>
-    <label class="btn btn-secondary active">
-      <input type="radio" name="options" id="option2"> Lista
-    </label>
-  </div>
-    
-  <div class="container">
-    <div id="mapa" class="mapa"></div>
-
-  </div>
+  </div>  
   
-  <script src="{{ url_for('static', filename='js/principal.js')}}"></script>
+  <div id="main">
+    
+    
+    <div class="row mt-1">
+      <div class="col-lg-12 card-margin">
+        <div class="card search-form">
+          <div class="card-body p-0">
+            <form id="search-form">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row no-gutters">
+                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                      <select class="form-control" id="exampleFormControlSelect1">
+                        <option>Location</option>
+                        <option>London</option>
+                        <option>Boston</option>
+                        <option>Mumbai</option>
+                        <option>New York</option>
+                        <option>Toronto</option>
+                        <option>Paris</option>
+                      </select>
+                    </div>
+                    <div class="col-lg-8 col-md-6 col-sm-12 p-0">
+                      <input type="text" placeholder="Search..." class="form-control" id="search" name="search">
+                    </div>
+                    <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                      <button type="submit" class="btn btn-base">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4 mb-4">
+      <div id="mapa" class="mapa"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-margin">
+          <div class="card-body">
+            <div class="row search-body">
+              <div class="col-lg-12">
+                <div class="search-result">
+                  <div class="result-header">
+                    <div class="row">
+                      <div class="col-lg-6">
+                                          
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="result-actions">
+                          <div class="result-sorting">
+                            <span>Sort By:</span>
+                            <select class="form-control border-0" id="exampleOption">
+                              <option value="1">Relevance</option>
+                              <option value="2">Names (A-Z)</option>
+                              <option value="3">Names (Z-A)</option>
+                            </select>
+                          </div>
+                          <div class="result-views">
+                            <button type="button" class="btn btn-soft-base btn-icon">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="feather feather-list"
+                              >
+                                <line x1="8" y1="6" x2="21" y2="6"></line>
+                                <line x1="8" y1="12" x2="21" y2="12"></line>
+                                <line x1="8" y1="18" x2="21" y2="18"></line>
+                                <line x1="3" y1="6" x2="3" y2="6"></line>
+                                <line x1="3" y1="12" x2="3" y2="12"></line>
+                                <line x1="3" y1="18" x2="3" y2="18"></line>
+                              </svg>
+                            </button>
+                            <button type="button" class="btn btn-soft-base btn-icon">
+                              <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="feather feather-grid"
+                            >
+                              <rect x="3" y="3" width="7" height="7"></rect>
+                              <rect x="14" y="3" width="7" height="7"></rect>
+                              <rect x="14" y="14" width="7" height="7"></rect>
+                              <rect x="3" y="14" width="7" height="7"></rect>
+                            </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="result-body">
+                    <div class="table-responsive">
+                      <table class="table widget-26">
+                        <tbody>        
+                          <tr>
+                            <td>
+                              <div class="widget-26-job-emp-img">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="Company" />
+                              </div>
+                            </td>
+                            <td>
+                              <div class="widget-26-job-title">
+                                <a href="#">Senior Software Engineer / Developer</a>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="widget-26-job-info">
+                                <p class="type m-0">Full-Time</p>
+                                <p class="text-muted m-0">in <span class="location">London, UK</span></p>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="widget-26-job-salary">$ 50/hr</div>
+                            </td>
+                            <td>
+                              <div class="widget-26-job-category bg-soft-base">
+                                <i class="indicator bg-base"></i>
+                                <span>Software Development</span>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="widget-26-job-starred">
+                                <a href="#">
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="feather feather-star"
+                                  >
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                  </svg>
+                                </a>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+
+  </div>
+
+  
+  
   <!-- <script src="../static/js/principal.js"></script> -->
+  <script src="{{ url_for('static', filename='js/principal.js')}}"></script>
   <!-- <script src="../libs/v6.4.3-dist/ol.js"></script> -->
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default%22%3E"></script>
  
