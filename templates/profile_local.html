@@ -118,6 +118,33 @@
                           </div>
                         </div>
                       </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="form-group" style="text-align: left;">
+                            <label for="tpambiente">Tipo de ambiente</label>
+                            {% for amb in lista_ambientes %}
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value= "{{amb.id | safe}}" id="casual" name="ambientes">
+                              <label class="form-check-label" for="defaultCheck1">
+                                {{ amb.ambiente | safe}}
+                              </label> 
+                            </div>
+                            {% endfor %}
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="form-group" style="text-align: left;">
+                            <label for="tpmusica">Tipo de música</label>
+                            {% for mus in lista_musica %}
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value= "{{mus.id | safe}}" id="cocktail" name="musicas">
+                              <label class="form-check-label" for="defaultCheck1">
+                                {{ mus.musica | safe }}
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </form>
                   </div>
                   <div class="modal-footer">
