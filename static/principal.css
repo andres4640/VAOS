@@ -58,8 +58,8 @@
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
     transition: margin-left .5s; /* If you want a transition effect */
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 90px;
+    padding-right: 90px;
     padding-bottom: 100px;
 }
 
@@ -111,6 +111,8 @@ h1 {
     .oculto { display: none !important; }
 }
 
+
+/* Configuracion para el mapa */
 #mapa {
     height: 70%;
 }
@@ -124,10 +126,6 @@ body {
 }
 
 /* main */
-body{
-    background:#dcdcdc;
-    margin-top:20px;}
-  
   .widget-26 {
   color: #3c4142;
   font-weight: 400;
