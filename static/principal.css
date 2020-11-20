@@ -123,6 +123,7 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    background-color: #F3F3F3;
 }
 
 /* main */
@@ -249,6 +250,7 @@ body {
   width: 80%;
   margin: 0 auto;
   margin-top: 1rem;
+  margin-bottom: -2px;
   }
   
   .search-form input {
