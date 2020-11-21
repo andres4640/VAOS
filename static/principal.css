@@ -286,7 +286,7 @@ body {
   }
   
   .search-body {
-  margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
   }
   
   .search-body .search-filters .filter-list {
@@ -377,4 +377,6 @@ body {
     border-radius: 8px;
   }
   
-  
+  .form{
+    margin-block-end:0;
+  }
