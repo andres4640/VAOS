@@ -2,7 +2,7 @@ from . import *
 
 
 @routes.route("/local_editar")
-def regular_editar():
+def local_editar():
     if "iduser" in session:
         if session["esEmp"] == 1:
             localId = request.args.get('localid')
@@ -16,7 +16,7 @@ def regular_editar():
         return redirect("/")
 
 @routes.route("/local_editar_confirmar")
-def usuario_editar_confirmar():
+def local_editar_confirmar():
 
     if "iduser" in session:
         if session["esEmp"] == 0:

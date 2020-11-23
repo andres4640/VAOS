@@ -1,8 +1,6 @@
 {
-<<<<<<< HEAD
-    "python.pythonPath": "",
-    "liveServer.settings.port": 5501
-=======
-    "python.pythonPath": "C:\\Users\\USER\\.virtualenvs\\VAOS-tElTxcTt\\Scripts\\python.exe"
->>>>>>> paola
+    "python.pythonPath": "C:\\Users\\Andres\\.virtualenvs\\VAO-d9iJo8x_\\Scripts\\python.exe",
+    "python.jediEnabled": true,
+    "python.languageServer": "Jedi",
+    "python.linting.enabled": false
 }
