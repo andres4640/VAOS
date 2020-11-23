@@ -10,7 +10,8 @@ def principal():
         else:
               
             total_locales = db.session.query(Local).all()
+            cantidad_locales = len(total_locales)
             print(total_locales)
-            return render_template("principal.html", lista_locales=total_locales)
+            return render_template("principal.html", lista_locales=total_locales, cantidad_locales=cantidad_locales)
     else:
         return redirect("/")
