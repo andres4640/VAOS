@@ -102,11 +102,10 @@ function initMap() {
 
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -12.106374, lng: -77.042852 },
-    zoom: 13,
+    zoom: 8,
     styles: [{
         featureType: "poi",
-        elementType: "labels",
-        stylers: [{ visibility: "off" }]
+        elementType: "labels"
       }
     ],
   });
