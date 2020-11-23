@@ -11,5 +11,3 @@ def mostrar_locales():
             return redirect("/")
     else:
         return redirect("/")
-    
-

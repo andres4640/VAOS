@@ -18,3 +18,7 @@ INSERT INTO TIPO_MUSICA VALUES
 (9,'Techno'),
 (10,'Otro')
 
+INSERT INTO TIPO_RED VALUES
+(1,'Facebook'),
+(2,'Instagram'),
+(3,'Twitter')
