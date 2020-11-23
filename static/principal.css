@@ -112,21 +112,19 @@ h1 {
 }
 
 
-/* Configuracion para el mapa */
-#mapa {
-    height: 70%;
+/* Always set the map height explicitly to define the size of the div
+* element that contains the map. */
+#map {
+  height: 100%;
 }
-  
+
 /* Optional: Makes the sample page fill the window. */
 html,
 body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+  height: 100%;
 }
 
-/* main */
-  .widget-26 {
+.widget-26 {
   color: #3c4142;
   font-weight: 400;
   }
@@ -377,6 +375,6 @@ body {
     border-radius: 8px;
   }
   
-  .form{
+  form{
     margin-bottom: 0 !important;
   }
