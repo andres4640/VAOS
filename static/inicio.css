@@ -1,0 +1,411 @@
+/* The sidebar menu */
+.sidebar {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+}
+
+/* The sidebar links */
+.sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#logout {
+    font-size: medium;
+    position: static;
+}
+
+/* The button used to open the sidebar */
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+
+.openbtn:hover {
+    background-color: #444;
+}
+
+
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+}
+
+.topleft {
+    position: absolute;
+    top: 26px;
+    left:45px;
+    font-size: 18px;
+}
+
+#head-logo {
+    transition: margin-left .5s;
+    padding: 25px;
+}
+
+#logo {
+    width: 200px;
+    height: 50px;
+}
+
+
+@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700);
+@import url(https://raw.github.com/FortAwesome/Font-Awesome/master/docs/assets/css/font-awesome.min.css);
+
+.topright {
+    position: absolute;
+    top: -30px;
+    right: -40px;
+    font-size: 18px;
+}
+
+
+h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#opcion-mapa-lista {
+    padding-left: 45px;
+    padding-right: 45px;
+}
+
+@media screen and (min-width: 0px) and (max-width: 415px) {
+    .oculto { display: none !important; }
+}
+
+
+/* Always set the map height explicitly to define the size of the div
+* element that contains the map. */
+#map {
+  height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+}
+
+.widget-26 {
+  color: #3c4142;
+  font-weight: 400;
+  }
+  
+  .widget-26 tr:first-child td {
+  border: 0;
+  }
+  
+  .widget-26 .widget-26-job-emp-img img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  }
+  
+  .widget-26 .widget-26-job-title {
+  min-width: 200px;
+  }
+  
+  .widget-26 .widget-26-job-title a {
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: #3c4142;
+  line-height: 1.5;
+  }
+  
+  .widget-26 .widget-26-job-title a:hover {
+  color: #68CBD7;
+  text-decoration: none;
+  }
+  
+  .widget-26 .widget-26-job-title .employer-name {
+  margin: 0;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #3c4142;
+  font-size: 0.8125rem;
+  color: #3c4142;
+  }
+  
+  .widget-26 .widget-26-job-title .employer-name:hover {
+  color: #68CBD7;
+  text-decoration: none;
+  }
+  
+  .widget-26 .widget-26-job-title .time {
+  font-size: 12px;
+  font-weight: 400;
+  }
+  
+  .widget-26 .widget-26-job-info {
+  min-width: 100px;
+  font-weight: 400;
+  }
+  
+  .widget-26 .widget-26-job-info p {
+  line-height: 1.5;
+  color: #3c4142;
+  font-size: 0.8125rem;
+  }
+  
+  .widget-26 .widget-26-job-info .location {
+  color: #3c4142;
+  }
+  
+  .widget-26 .widget-26-job-salary {
+  min-width: 70px;
+  font-weight: 400;
+  color: #3c4142;
+  font-size: 0.8125rem;
+  }
+  
+  .widget-26 .widget-26-job-category {
+  padding: .5rem;
+  display: inline-flex;
+  white-space: nowrap;
+  border-radius: 15px;
+  }
+  
+  .widget-26 .widget-26-job-category .indicator {
+  width: 13px;
+  height: 13px;
+  margin-right: .5rem;
+  float: left;
+  border-radius: 50%;
+  }
+  
+  .widget-26 .widget-26-job-category span {
+  font-size: 0.8125rem;
+  color: #3c4142;
+  font-weight: 600;
+  }
+  
+  .widget-26 .widget-26-job-starred svg {
+  width: 20px;
+  height: 20px;
+  color: #fd8b2c;
+  }
+  
+  .widget-26 .widget-26-job-starred svg.starred {
+  fill: #fd8b2c;
+  }
+  .bg-soft-base {
+  background-color: #e1f5f7;
+  }
+  .bg-soft-warning {
+    background-color: #fff4e1;
+  }
+  .bg-soft-success {
+    background-color: #d1f6f2;
+  }
+  .bg-soft-danger {
+    background-color: #fedce0;
+  }
+  .bg-soft-info {
+    background-color: #d7efff;
+  }
+  
+  
+  .search-form {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 1rem;
+  }
+  
+  .search-form input {
+  height: 100%;
+  background: transparent;
+  border: 0;
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  height: 100%;
+  font-size: 1rem;
+  }
+  
+  .search-form select {
+  background: transparent;
+  border: 0;
+  padding: 1rem;
+  height: 100%;
+  font-size: 1rem;
+  }
+  
+  .search-form select:focus {
+  border: 0;
+  }
+  
+  .search-form button {
+  height: 100%;
+  width: 100%;
+  font-size: 1rem;
+  }
+  
+  .search-form button svg {
+  width: 24px;
+  height: 24px;
+  }
+  
+  .search-body {
+    margin-bottom: 1.5rem;
+  }
+  
+  .search-body .search-filters .filter-list {
+  margin-bottom: 1.3rem;
+  }
+  
+  .search-body .search-filters .filter-list .title {
+  color: #3c4142;
+  margin-bottom: 1rem;
+  }
+  
+  .search-body .search-filters .filter-list .filter-text {
+  color: #727686;
+  }
+  
+  .search-body .search-result .result-header {
+  margin-bottom: 2rem;
+  }
+  
+  .search-body .search-result .result-header .records {
+  color: #3c4142;
+  }
+  
+  .search-body .search-result .result-header .result-actions {
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  }
+  
+  .search-body .search-result .result-header .result-actions .result-sorting {
+  display: flex;
+  align-items: center;
+  }
+  
+  .search-body .search-result .result-header .result-actions .result-sorting span {
+  flex-shrink: 0;
+  font-size: 0.8125rem;
+  }
+  
+  .search-body .search-result .result-header .result-actions .result-sorting select {
+  color: #68CBD7;
+  }
+  
+  .search-body .search-result .result-header .result-actions .result-sorting select option {
+  color: #3c4142;
+  }
+  
+  @media (min-width: 768px) and (max-width: 991.98px) {
+  .search-body .search-filters {
+    display: flex;
+  }
+  .search-body .search-filters .filter-list {
+    margin-right: 1rem;
+  }
+  }
+  
+  .card-margin {
+    margin-bottom: 1.875rem;
+  }
+  
+  @media (min-width: 992px){
+  .col-lg-2 {
+    flex: 0 0 16.66667%;
+    max-width: 16.66667%;
+  }
+  }
+
+  
+  form{
+    margin-bottom: 0 !important;
+  }
+
+  .mapatext {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    color: #fff;
+    font-size: 50px;
+  }
+
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 200%;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-shadow: 1px 1px black;
+  }
+
+  .mapatext:hover {
+    color: black;
+  }
+
+  .image {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+  }
+  
+  .middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+    
+  }
+  
+  .container:hover .image {
+    opacity: 0.3;
+  }
+  
+  .container:hover .middle {
+    opacity: 1;
+  }
+  
+  .text {
+   
+  }
