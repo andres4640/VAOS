@@ -13,10 +13,17 @@ function starmark(item) {
     }
 
 }
+var rating = {
+    'rating': sessionStorage.starRating
+}
 
 function result() {
-    //Rating : Count
-    //Review : Comment(id)
+    console.log("Resultado ", count);
+    $.post( 'valorar', {
+        javascript_data: count },function(){
+        });
+
+
     alert("Rating : "+count+"\nReview : "+document.getElementById("comment").value);
 }
 

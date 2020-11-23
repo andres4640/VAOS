@@ -156,31 +156,38 @@
                   <div class="result-body">
                     <div class="table-responsive">
                       <table class="table widget-26">
-                        <tbody id="table-body">        
+                        <tbody id="table-body">
+                          {% for local in lista_locales %}        
                           <tr>
-                            <td>
+                            <!-- <td>
                               <div class="widget-26-job-emp-img">
                                 <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="Local" />
                               </div>
-                            </td>
+                            </td> -->
+                            
                             <td>
                               <div class="widget-26-job-title">
-                                <a href="#">Senior Software Engineer / Developer</a>
+                                <a href="/profile_local?localid={{local.id}}">{{ local.nombre | safe }}</a>
                               </div>
                             </td>
                             <td>
                               <div class="widget-26-job-info">
-                                <p class="type m-0">Full-Time</p>
-                                <p class="text-muted m-0">in <span class="location">London, UK</span></p>
+                                <p class="type m-0">{{ local.horaApertura | safe }} - </p>
+                                <p class="text-muted m-0"><span class="location">{{ local.horaCierre | safe }}</span></p>
                               </div>
                             </td>
                             <td>
-                              <div class="widget-26-job-salary">$ 50/hr</div>
+                              <div class="widget-26-job-salary">{{ local.direccion | safe }}</div>
                             </td>
                             <td>
                               <div class="widget-26-job-category bg-soft-base">
                                 <i class="indicator bg-base"></i>
-                                <span>Software Development</span>
+                                {% if local.tipoLocal == "1" %}
+                                <span>BAR</span>
+                                {% endif %}
+                                {% if local.tipoLocal == "2" %}
+                                <span>DISCOTECA</span>
+                                {% endif %}
                               </div>
                             </td>
                             <td>
@@ -204,6 +211,7 @@
                               </div>
                             </td>
                           </tr>
+                          {% endfor %}
                         </tbody>
                       </table>
                     </div>

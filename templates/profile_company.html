@@ -81,12 +81,12 @@
                     </div>
                     <div class="modal-body">
                       
-                      <form id ="formulario" method="POST">
+                      <form id ="formulario" action="/empresa_editar_confirmar" method="POST">
                         <div class="row">
                           <div class="col">
                             <div class="form-group" style="text-align: left;">
                               <label for="nombre">Nombre</label>
-                              <input type="text" class="form-control" id="nombre" name="nombre">
+                              <input type="text" class="form-control" id="nombre" name="nombre" value="{{empresa.nombre | safe}}">
                             </div>
                           </div>
                         </div>
@@ -95,7 +95,7 @@
                           <div class="col">
                             <div class="form-group" style="text-align: left;">
                               <label for="correo">Correo</label>
-                              <input type="email" class="form-control" id="correo" placeholder="name@example.com" name="correo">
+                              <input type="email" class="form-control" id="correo" placeholder="name@example.com" name="correo" value="{{empresa.correo | safe}}">
                             </div>
                           </div>
                         </div>
@@ -103,7 +103,7 @@
                           <div class="col">
                             <div class="form-group" style="text-align: left;">
                               <label for="telefono">Télefono</label>
-                              <input type="text" class="form-control" id="telefono" name="telefono">
+                              <input type="text" class="form-control" id="telefono" name="telefono" value="{{empresa.telefono | safe}}">
                             </div>
                           </div>
                         </div>
@@ -113,27 +113,29 @@
                               <label for="nombres">Redes Sociales</label>
                                 <div class="row">
                                   <div class="col">
-                                    <input type="text" class="form-control" id="facebook" name="facebook" placeholder="Facebook">
+                                    <input type="text" class="form-control" id="facebook" name="facebook" placeholder="Facebook" value="{{facebook_url | safe}}">
                                   </div>
                                   <div class="col">
-                                    <input type="text" class="form-control" id="instagram" name="instagram" placeholder="Instagram">
+                                    <input type="text" class="form-control" id="instagram" name="instagram" placeholder="Instagram" value="{{instragram_url | safe}}">
                                   </div>
                                 </div>
                                 <br>
                                 <div class="row">
                                   <div class="col-6">
-                                    <input type="text" class="form-control" id="twitter" name="twitter" placeholder="Twitter">
+                                    <input type="text" class="form-control" id="twitter" name="twitter" placeholder="Twitter" value="{{twitter_url | safe}}">
                                   </div>
                                 </div>
                             </div>
                           </div>
                         </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        </div>
+
                       </form>
                     </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-primary">Guardar cambios</button>
-                    </div>
+   
                   </div>
                 </div>
               </div>
