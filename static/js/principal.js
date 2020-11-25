@@ -142,11 +142,9 @@ function initMap() {
           var marker = new google.maps.Marker({
             map:map,
             position:pos,
-            icon: "location.png",
+            icon: "../img/location.png",
             animation: google.maps.Animation.DROP,
           });
-
-          
 
         },
         () => {
