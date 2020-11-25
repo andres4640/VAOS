@@ -1,9 +1,10 @@
 from . import *
+import json
 
 @routes.route("/profile_local") #, methods=["GET"])
 def profile_local():
     if "iduser" in session:
-        
+         
         localId = request.args.get('localid')
         local = db.session.query(Local).filter(Local.id == localId)[0]
         session["localid"] = localId
@@ -11,7 +12,10 @@ def profile_local():
         lista_ambiente = db.session.query(Tipo_ambiente)
         lista_musicas = db.session.query(Tipo_musica)
         esEmp = session["esEmp"]
-        return render_template("profile_local.html", local=local, horario=horario, lista_ambientes=lista_ambiente, lista_musica=lista_musicas, esEmp=esEmp)  
+
+        valoraciones = db.session.query(Valoracion).filter(Valoracion.id_local == localId)
+
+        return render_template("profile_local.html", local=local, horario=horario, lista_ambientes=lista_ambiente, lista_musica=lista_musicas, esEmp=esEmp, valoraciones=valoraciones)  
         
     else:
         return redirect("/")
@@ -71,29 +75,38 @@ def local_editar_confirmar():
 # Falta terminar
 @routes.route("/valorar", methods=["POST"])
 def reseña():
-    print("GA")
+
     if "iduser" in session:
         if session["esEmp"] == 0:
-            comentario = request.form["comentario"]
+            #comentario = request.form["comentario"]
             #estrellas = request.form["estrellas"]
-        
-            data = request.get_data()
-            print(data)
+            #data = request.form['javascript_data']
 
-            asociacion = Valoracion(comentario=comentario, estrellas=data)
+            data = request.get_json(force = True)
+            estrellas = data["estrellas"]
+            comentario = data["comentario"]
+
+            result = ''
+            print(estrellas)
+            print(comentario)
+
+            asociacion = Valoracion(comentario=comentario, estrellas=estrellas)
             asociacion.usuario = db.session.query(Usuario_reg).filter(Usuario_reg.id == session["iduser"])[0]
             asociacion.local = db.session.query(Local).filter(Local.id == session["localid"])[0]
 
             db.session.flush()
             db.session.commit()
 
-            return redirect("/")
+            return json.dumps({'success':True}), 201, {'ContentType':'application/json'}
+            #redirect("/profile_local")
 
         else:
             print("Usuario no es empresa")
+            #return json.dumps({'success':True}, 201, {'ContentType':'application/json'})
             return redirect("/") 
 
     else:
+        #return json.dumps({'success':True}), 201, {'ContentType':'application/json'}
         return redirect("/")
 
 @routes.route('/obtener_rating', methods = ['POST'])

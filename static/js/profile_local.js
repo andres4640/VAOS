@@ -8,7 +8,7 @@ $(document).ready(function () {
             country: "PER"
         }
     });
-	
+    
     google.maps.event.addListener(autocomplete, 'place_changed', function () {
         var near_place = autocomplete.getPlace();
         console.log(near_place.geometry.location.lng());
@@ -31,19 +31,43 @@ function starmark(item) {
 
 }
 var rating = {
-    'rating': sessionStorage.starRating
-}
-
-function result() {
-    console.log("Resultado ", count);
-    $.post( 'valorar', {
-        javascript_data: count },function(){
-        });
-
-
-    alert("Rating : "+count+"\nReview : "+document.getElementById("comment").value);
+    'rating': count
 }
 
 $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
+})
+
+$("#form-valoracion").on("submit", async function(e){
+    e.preventDefault();
+    $("#enviarClick").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').attr('disabled', true)
+    const comentario = $("#new-review").val()
+    const estrellas = sessionStorage.getItem("starRating");
+    const data = {comentario,estrellas}
+    try {
+
+        const res = await axios.post("/valorar", data);
+        console.log(res)
+        if(res.status === 201){
+            alert("Comenatio publicado");
+            $("#form-valoracion").trigger("reset")
+            $("reviewformModal").modal("hide")
+            $("#enviarClick").html('Enviar').attr('disabled', false)
+            location.reload();
+        }
+
+    } catch (error) {
+        $("#enviarClick").html('Enviar').attr('disabled', false)
+        console.log(error)
+        
+    }
+
+})
+
+$("#submit-btn").on('click',function(){
+    $('#formulario').submit();
+})
+
+$("#enviarClick").on('click',function(){
+    $('#form-valoracion').submit();
 })
