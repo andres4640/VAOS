@@ -10,10 +10,20 @@ def profile_empresa():
             clientes = empresa.clientes.count()
             lista_locales = empresa.locales
 
+            
+
             facebook_url = ""
             twitter_url = ""
             instragram_url = ""
 
+            if db.session.query(Tiene_redes).filter(Tiene_redes.id_empresa == session["iduser"],Tiene_redes.id_red==1).first() is not None :
+                facebook_url = db.session.query(Tiene_redes).filter(Tiene_redes.id_empresa == session["iduser"],Tiene_redes.id_red==1).first().url
+
+            if db.session.query(Tiene_redes).filter(Tiene_redes.id_empresa == session["iduser"],Tiene_redes.id_red==2).first() is not None :
+                twitter_url = db.session.query(Tiene_redes).filter(Tiene_redes.id_empresa == session["iduser"],Tiene_redes.id_red==2).first().url
+            if db.session.query(Tiene_redes).filter(Tiene_redes.id_empresa == session["iduser"],Tiene_redes.id_red==3).first() is not None :
+                instragram_url = db.session.query(Tiene_redes).filter(Tiene_redes.id_empresa == session["iduser"],Tiene_redes.id_red==3).first().url
+                
             redes_emp = empresa.redes
             if redes_emp is not None: 
                 for red in redes_emp:
@@ -25,7 +35,7 @@ def profile_empresa():
                         twitter_url =red.url
 
             return render_template("profile_company.html", empresa = empresa, num_cli = clientes, locales=lista_locales, redes = redes_sociales,
-            facebook_url=facebook_url,twitter_url=twitter_url,instragram_url=instragram_url)  
+            facebook_url=facebook_url,twitter_url=twitter_url,instagram_url=instragram_url)  
         else:
             return redirect("/")
     else:

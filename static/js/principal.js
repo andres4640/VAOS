@@ -178,10 +178,12 @@ function createMarkers() {
 
     infoWindow = new google.maps.InfoWindow();
 
-    marker.addEventListener("click", function() {
+    google.maps.event.addListener(marker, "click",(function(marker) {
+      return function(evt) {
       populateInfoWindow(marker, infoWindow);
       infoWindow.open(map, marker);
-    })
+    }
+    })(marker))
   }
 }
 

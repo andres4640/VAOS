@@ -205,11 +205,15 @@
           <i class="fa fa-clock-o" aria-hidden="true"></i> <small class="text-muted">Horario: </small><small
             class="text-muted">{{horario | safe}}</small> <br> <br>
 
+
+          {% for i in range(num_estrellas) %}
           <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star"></span> <small class="text-muted">10 valoraciones </small>
+          {% endfor %}
+          {% for i in range(5-num_estrellas) %}
+          <span class="fa fa-star"></span> 
+          {% endfor %}
+
+          <small class="text-muted">{{count | safe}} </small>
 
           <!--
           <p>Fecha de nacimiento: <small>05/09/1999</small></p>
@@ -389,6 +393,7 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCMqxtH3MtWNmuEq3ITdU0hdN-O3YB3HVY"></script>
 
   <!-- <script src="../static/js/profile_local.js"></script> -->
 
