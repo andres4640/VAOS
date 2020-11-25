@@ -142,7 +142,7 @@ function initMap() {
           var marker = new google.maps.Marker({
             map:map,
             position:pos,
-            icon: "../img/location.png",
+            icon: "/static/img/location.png",
             animation: google.maps.Animation.DROP,
           });
 
@@ -176,12 +176,12 @@ function createMarkers() {
       animation: google.maps.Animation.DROP,
     });
 
-    /*infoWindow = new google.maps.InfoWindow();
+    infoWindow = new google.maps.InfoWindow();
 
     marker.addEventListener("click", function() {
       populateInfoWindow(marker, infoWindow);
       infoWindow.open(map, marker);
-    })*/
+    })
   }
 }
 
