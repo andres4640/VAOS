@@ -1,4 +1,17 @@
 var count;
+/* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+function openNav() {
+    document.getElementById("mySidebar").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+    document.getElementById("head-logo").style.marginLeft = "250px";
+}
+
+/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+    document.getElementById("head-logo").style.marginLeft = "0";
+}
 
 $(document).ready(function () {
     var autocomplete;
@@ -49,7 +62,6 @@ $("#form-valoracion").on("submit", async function(e){
         const res = await axios.post("/valorar", data);
         console.log(res)
         if(res.status === 201){
-            alert("Comenatio publicado");
             $("#form-valoracion").trigger("reset")
             $("reviewformModal").modal("hide")
             $("#enviarClick").html('Enviar').attr('disabled', false)

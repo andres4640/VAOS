@@ -162,7 +162,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-primary">Guardar cambios</button>
+                      <button type="button" class="btn btn-primary" id="submit-btn">Guardar cambios</button>
                     </div>
                   </form>
                 </div>
@@ -323,17 +323,22 @@
                   <img src="../static/img/user.png" alt="" class="user_foto_mini">
                 </div>
                 
+                
                 <div class="col-8 texto_comentario">
-                  {% for i in range(val.estrellas) %}
+                  <small>
+                    <b>{{val[1].nombre_usuario | safe}}</b>   
+                  </small>
+                  <br>
+                  {% for i in range(val[0].estrellas) %}
                   <span class="fa fa-star checked"></span>
                   {% endfor %}
-                  {% for i in range(5-val.estrellas) %}
+                  {% for i in range(5-val[0].estrellas) %}
                   <span class="fa fa-star"></span> 
                   {% endfor %}
 
                   <br>
                   <small>
-                    {{val.comentario | safe}}   
+                    {{val[0].comentario | safe}}   
                   </small>
                 </div>
                 

@@ -13,8 +13,12 @@ def profile_local():
         lista_musicas = db.session.query(Tipo_musica)
         esEmp = session["esEmp"]
 
-        valoraciones = db.session.query(Valoracion).filter(Valoracion.id_local == localId)
-
+        valoraciones = db.session.query(Valoracion, Usuario_reg).join(Usuario_reg,Usuario_reg.id == Valoracion.id_regular).filter(Valoracion.id_local == localId)
+        print(valoraciones)#[0].nombre_usuario)
+        # print("")
+        # print(valoraciones.all())
+        # print("")
+        # print(valoraciones[0])
         return render_template("profile_local.html", local=local, horario=horario, lista_ambientes=lista_ambiente, lista_musica=lista_musicas, esEmp=esEmp, valoraciones=valoraciones)  
         
     else:
