@@ -91,10 +91,7 @@ def reseña():
 
     if "iduser" in session:
         if session["esEmp"] == 0:
-            #comentario = request.form["comentario"]
-            #estrellas = request.form["estrellas"]
-            #data = request.form['javascript_data']
-
+            
             data = request.get_json(force = True)
             estrellas = data["estrellas"]
             comentario = data["comentario"]

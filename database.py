@@ -1,6 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow
 
 db = SQLAlchemy()
+ma = Marshmallow()
 
 sigue = db.Table(
     "sigue",
@@ -122,8 +124,8 @@ class Local(db.Model):
     id_distrito = db.Column(db.Integer, db.ForeignKey("distrito.id")) #FK
     id_empresa = db.Column(db.Integer, db.ForeignKey("usuario_emp.id")) #FK
     
-    longitud = db.Column(db.BigInteger)
-    latitud = db.Column(db.BigInteger)
+    longitud = db.Column(db.DECIMAL(19,16))
+    latitud = db.Column(db.DECIMAL(19,16))
 
     musicas = db.relationship(
         "Tipo_musica",
@@ -144,6 +146,9 @@ class Local(db.Model):
     valoraciones = db.relationship("Valoracion", back_populates="local")
 
     fotos_carta = db.relationship("Foto_carta", backref="local", lazy="select")
+
+    def as_dict(self):
+       return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 class Tipo_musica(db.Model):
 
@@ -180,7 +185,7 @@ class Evento(db.Model):
     fechaInicio = db.Column(db.DateTime)
     fechaFin = db.Column(db.DateTime)
     imagen = db.Column(db.String(400))
-    precio = db.Column(db.Integer)
+    precio = db.Column(db.Float())
     id_local = db.Column(db.Integer, db.ForeignKey("local.id")) #Fk
 
 class Foto_carta(db.Model):

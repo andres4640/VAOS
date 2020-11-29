@@ -18,16 +18,22 @@ def registrar_local():
     if "iduser" in session:
         if session["esEmp"] == 1:
             if request.method == "POST":
-                nombre = request.form["nombre"]
-                descripcion = request.form["descripcion"]
-                direccion = request.form["direccion"]
-                horaApertura = request.form["horaApertura"]
-                horaCierre = request.form["horaCierre"]
-                tipoLocal = request.form["tipo_local"]
+
+                data = request.get_json(force = True)
+                print(data)
+                nombre = data["nombre"]
+                descripcion = data["descripcion"]
+                direccion = data["ubicacion"]
+                horaApertura = data["horaApertura"]
+                horaCierre = data["horaCierre"]
+                tipoLocal = data["tipoLocal"]
+
+                longitud = data["longitud"]
+                latitude = data["latitude"]
 
                 # Falta distrito - direccion
-                ambientes = request.form.getlist("ambientes")   # La musica es ingresada mediante CheckBox y se pueden escoger varias
-                musicas = request.form.getlist("musicas")       # El ambiente es ingresada mediante CheckBox y se pueden escoger varias
+                ambientes = data["tipoAmbiente"]   # La musica es ingresada mediante CheckBox y se pueden escoger varias
+                musicas = data["tipoMusica"]       # El ambiente es ingresada mediante CheckBox y se pueden escoger varias
 
                 print(horaApertura)
                 local = Local(
@@ -37,7 +43,9 @@ def registrar_local():
                     horaApertura = horaApertura,
                     horaCierre = horaCierre,
                     id_empresa = session["iduser"],
-                    tipoLocal = tipoLocal
+                    tipoLocal = tipoLocal,
+                    longitud = longitud,
+                    latitud = latitude
                 )
 
                 for amb in ambientes:
@@ -51,7 +59,10 @@ def registrar_local():
                 db.session.commit()
 
                 flash("Local creado exitosamente", "exito_local")
-                return redirect("/locales")
+                return json.dumps({'success':True}), 201, {'ContentType':'application/json'}
+
+            else: 
+                return("/registrar_local_vista")
         else:
             return redirect("/")
     else:

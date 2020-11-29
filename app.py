@@ -28,6 +28,7 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
+
 @app.route("/cerrar_sesion", methods=['GET'])
 def cerrar_sesion():
     session.clear()

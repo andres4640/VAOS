@@ -17,7 +17,18 @@
       <div class="col-lg-6 col-md-8 col-10">
         <h1>NUEVO LOCAL</h1>
         <br>
-        <form action="/registrar_local_vista/registrar" method="POST">
+
+        {% with mensaje = get_flashed_messages(category_filter=["exito_local"]) %}
+        {% if mensaje %}
+        <div class="alert alert-success" role="alert">
+          {%- for men in mensaje %}
+          <p>{{men | safe}}</p>
+          {% endfor -%}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <form id="form-createLocal">
           <div class="form-group">
                 <label for="nombre">Nombre del local</label>
                 <input type="text" class="form-control" id="nombre" name="nombre">
@@ -59,37 +70,6 @@
                   </label> 
                 </div>
                 {% endfor %}
-
-                <!-- <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="2" id="cocktail" name="ambientes">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Cocktail
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="3" id="internacional" name="ambientes">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Internacional
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="4" id="lgbt" name="ambientes">
-                  <label class="form-check-label" for="defaultCheck1">
-                    LGBT
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="5" id="underground" name="ambientes">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Underground
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="6" id="upscale" name="ambientes">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Upscale
-                  </label>
-                </div> -->
               </div>
             </div>
             <div class="col">
@@ -103,60 +83,6 @@
                   </label>
                 </div>
                 {% endfor %}
-                <!-- <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="cocktail">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Comercial
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="internacional">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Electro
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="hiphop">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Hip Hop, R&B
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="indie">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Indie
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="jazz">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Jazz & Blues
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="latino">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Latino
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="rock">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Rock
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="techno">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Techno
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="otro">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Otro
-                  </label>
-                </div> -->
               </div>
             </div>
           </div>
@@ -175,7 +101,7 @@
           </div>  
           </div>
           <div class="text-center">
-            <button id="save" type="submit" class="btn btn-dark col-3">Guardar</button>
+            <button id="save" type="button" class="btn btn-dark col-3">Guardar</button>
           </div>
         </form>
       </div>
@@ -183,7 +109,8 @@
   </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="{{ url_for('static', filename='js/create_local.js')}}"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCMqxtH3MtWNmuEq3ITdU0hdN-O3YB3HVY"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="{{ url_for('static', filename='js/create_local.js')}}"></script>
 </html>
