@@ -3,17 +3,22 @@ from . import *
 
 @routes.route("/local_editar")
 def local_editar():
-    if "iduser" in session:
-        if session["esEmp"] == 1:
-            localId = request.args.get('localid')
-            local = db.session.query(Local).filter(Local.id == localId)[0]
-            horario = local.horaApertura + " - " + local.horaCierre
-            #Editar direccion HTML
-            return render_template("profile_company.html", local=local, horario=horario) 
+    try: 
+        if "iduser" in session:
+            if session["esEmp"] == 1:
+                localId = request.args.get('localid')
+                local = db.session.query(Local).filter(Local.id == localId)[0]
+                horario = local.horaApertura + " - " + local.horaCierre
+                #Editar direccion HTML
+                return render_template("profile_company.html", local=local, horario=horario) 
+            else:
+                return redirect("/")
         else:
             return redirect("/")
-    else:
-        return redirect("/")
+    except:
+        e = sys.exc_info()[0]
+        print("Unexpected error: ", e)
+        raise
 
 # @routes.route("/local_editar_confirmar")
 # def local_editar_confirmar():
