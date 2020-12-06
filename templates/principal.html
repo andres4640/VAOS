@@ -11,7 +11,8 @@
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <!-- <link rel="stylesheet" href="../static/principal.css"> -->
   <link rel="stylesheet" href="{{ url_for('static', filename='principal.css')}}">
-  <link rel="stylesheet" href="../static/header.css">
+  <!-- <link rel="stylesheet" href="../static/header.css"> -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='header.css')}}">
   <!-- <link rel="stylesheet" href="../libs/v6.4.3-dist/ol.css"> -->
   <link rel="stylesheet" href="{{ url_for('static', filename='ol.css')}}">
   
@@ -86,8 +87,11 @@
     </div>
   </div>
 
-  <!-- <script src="../static/js/principal.js"></script> -->
-  
+  <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+    <div class="container text-center">
+      <small>Copyright &copy; VAOS</small>
+    </div>
+  </footer>
   
   <!-- <script src="../libs/v6.4.3-dist/ol.js"></script> -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -97,6 +101,7 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMqxtH3MtWNmuEq3ITdU0hdN-O3YB3HVY&callback=initMap&libraries=&v=weekly" defer></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- <script src="../static/js/principal.js"></script> -->
   <script src="{{ url_for('static', filename='js/principal.js')}}"></script>
  
 
