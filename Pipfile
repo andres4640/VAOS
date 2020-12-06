@@ -13,8 +13,6 @@ psycopg2-binary = "*"
 flask-sqlalchemy = "*"
 gunicorn = "*"
 class = "*"
-flask-marshmallow = "*"
-marshmallow-sqlalchemy = "*"
 
 [requires]
 python_version = "3.7"
