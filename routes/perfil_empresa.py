@@ -7,7 +7,7 @@ def profile_empresa():
             session["empresaid"] = session["iduser"]
         elif session["esEmp"] == 0:         
             empid = request.args.get('empid')
-            print(empid)
+            #print(empid)
             session["empresaid"]=empid
 
 
@@ -15,7 +15,6 @@ def profile_empresa():
         redes_sociales = db.session.query(Tiene_redes).filter(Tiene_redes.id_empresa == session["empresaid"])
         clientes = empresa.clientes.count()
         lista_locales = empresa.locales
-
         facebook_url = ""
         twitter_url = ""
         instragram_url = ""
