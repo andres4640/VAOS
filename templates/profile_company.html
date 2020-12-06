@@ -22,7 +22,7 @@
 
       <div class="col-lg-6 col-md-8 col-sm-8 col-6 text-center">
         <div id="head-logo" class="text-center">
-          <a href="principal.html">
+          <a href="/inicio">
             <img id="logo" src="../static/img/logo.png" id="logohead">
           </a>
         </div>
@@ -40,6 +40,7 @@
 
   </header>
 
+  {% if esEmp == 1 %}
   <div id="mySidebar" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="/profile_empresa">Perfil</a>
@@ -49,14 +50,22 @@
     <a href="#">Ajustes</a>
     <a id="logout" href="/cerrar_sesion">Cerrar sesión</a>
   </div>
-
+  {% endif %}
+  {% if esEmp == 0 %}
+  <div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/profile_cliente">Perfil</a>
+    <a href="/calendario">Calendario</a>
+    <a href="#">Favoritos</a>
+    <a href="#">Ajustes</a>
+    <a id="logout" href="/cerrar_sesion">Cerrar sesión</a>
+  </div>  
+  {% endif %}
 
   <div id="main">
 
     <div class="container user-container shadow p-3 mb-5 rounded-lg">
       <div class="row justify-content-center">
-        
-        
         <div class="col text-center" id="portada">
           <img src="../static/img/user.png" class="user_foto">
           <div>
@@ -65,10 +74,24 @@
           <div class="row">
             <div class="col">
               <!-- Button trigger modal -->
+            {% if esEmp == 0 %}
+              {% if sigue == 0 %}
+              <form id="formulario-seguir" action="/seguir" method="POST"></form>
+                <button type="button" class="btn btn-success" id="boton_seguir">Seguir</button>
+              </form>
+              {% endif %}
+              {% if sigue == 1 %}
+              <form id="formulario-no-seguir" action="/no_seguir" method="POST"></form>
+                <button type="button" class="btn btn-secondary" id="boton-no-seguir">Dejar de seguir</button>
+              </form>
+              {% endif %}
+              <br><br>
+            {% endif %}
+            {% if esEmp == 1 %}
               <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
                 Editar
               </button>
-
+            {% endif %}
               <!-- Modal -->
               <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -182,7 +205,7 @@
 
               {% for local in locales %}
                 <div class="card p-4">
-                    <a class="card-block stretched-link text-decoration-none text-reset" href="/">
+                    <a class="card-block stretched-link text-decoration-none text-reset" href="/profile_local?localid={{local.id}}">
                         <h4 class="card-title">{{ local.nombre | safe }}</h4>
                         <p class="card-text">{{ local.descripcion | safe }}</p>
                     </a>
@@ -217,11 +240,10 @@
   </footer>
 
   
-
-  <script src="../static/js/principal.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
+  <script src="../static/js/principal.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
     integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
     crossorigin="anonymous"></script>

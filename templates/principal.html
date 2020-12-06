@@ -26,7 +26,7 @@
 
       <div class="col-lg-6 col-md-8 col-sm-8 col-6 text-center">
         <div id="head-logo" class="text-center">
-          <a href="/principal">
+          <a href="/inicio">
             <img id="logo" src="../static/img/logo.png" id="logohead">
           </a>
         </div>
@@ -45,7 +45,7 @@
   
   <div id="main">
         
-    <div class="row mt-1">
+    <!-- <div class="row mt-1">
       <div class="col-lg-12 card-margin">
         <div class="card search-form">
           <div class="card-body p-0">
@@ -79,162 +79,17 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="mt-2 mb-4"></div>
       <div id="map" class="map"></div>
     </div>
-
-    <div class="row">
-      <div class="col-12">
-        <div class="card card-margin">
-          <div class="card-body">
-            <div class="row search-body">
-              <div class="col-lg-12">
-                <div class="search-result">
-                  <div class="result-header">
-                    <div class="row">
-                      <div class="col-lg-6">
-                        <div class="records" id="records">Showing: <b>{{ cantidad_locales | safe }}</b> results</div>       
-                      </div>
-                      <div class="col-lg-6">
-                        <div class="result-actions">
-                          <div class="result-sorting">
-                            <span>Sort By:</span>
-                            <select class="form-control border-0" id="exampleOption">
-                              <option value="1">Relevance</option>
-                              <option value="2">Names (A-Z)</option>
-                              <option value="3">Names (Z-A)</option>
-                            </select>
-                          </div>
-                          <div class="result-views">
-                            <button type="button" class="btn btn-soft-base btn-icon">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="feather feather-list"
-                              >
-                                <line x1="8" y1="6" x2="21" y2="6"></line>
-                                <line x1="8" y1="12" x2="21" y2="12"></line>
-                                <line x1="8" y1="18" x2="21" y2="18"></line>
-                                <line x1="3" y1="6" x2="3" y2="6"></line>
-                                <line x1="3" y1="12" x2="3" y2="12"></line>
-                                <line x1="3" y1="18" x2="3" y2="18"></line>
-                              </svg>
-                            </button>
-                            <button type="button" class="btn btn-soft-base btn-icon">
-                              <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              class="feather feather-grid"
-                            >
-                              <rect x="3" y="3" width="7" height="7"></rect>
-                              <rect x="14" y="3" width="7" height="7"></rect>
-                              <rect x="14" y="14" width="7" height="7"></rect>
-                              <rect x="3" y="14" width="7" height="7"></rect>
-                            </svg>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="result-body">
-                    <div class="table-responsive">
-                      <table class="table widget-26">
-                        <tbody id="table-body">
-                          {% for local in lista_locales %}        
-                          <tr>
-                            <!-- <td>
-                              <div class="widget-26-job-emp-img">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="Local" />
-                              </div>
-                            </td> -->
-                            
-                            <td>
-                              <div class="widget-26-job-title">
-                                <a href="/profile_local?localid={{local.id}}">{{ local.nombre | safe }}</a>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="widget-26-job-info">
-                                <p class="type m-0">{{ local.horaApertura | safe }} - </p>
-                                <p class="text-muted m-0"><span class="location">{{ local.horaCierre | safe }}</span></p>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="widget-26-job-salary">{{ local.direccion | safe }}</div>
-                            </td>
-                            <td>
-                              <div class="widget-26-job-category bg-soft-base">
-                                <i class="indicator bg-base"></i>
-                                {% if local.tipoLocal == "1" %}
-                                <span>BAR</span>
-                                {% endif %}
-                                {% if local.tipoLocal == "2" %}
-                                <span>DISCOTECA</span>
-                                {% endif %}
-                              </div>
-                            </td>
-                            <td>
-                              <div class="widget-26-job-starred">
-                                <a href="#">
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    class="feather feather-star"
-                                  >
-                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                  </svg>
-                                </a>
-                              </div>
-                            </td>
-                          </tr>
-                          {% endfor %}
-                        </tbody>
-                      </table>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-   
-
   </div>
 
-  
-  
   <!-- <script src="../static/js/principal.js"></script> -->
   
   
   <!-- <script src="../libs/v6.4.3-dist/ol.js"></script> -->
- 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>

@@ -56,6 +56,9 @@ $("#form-valoracion").on("submit", async function(e){
     $("#enviarClick").html('<i class="fas fa-spinner fa-pulse fa-lg"></i>').attr('disabled', true)
     const comentario = $("#new-review").val()
     const estrellas = sessionStorage.getItem("starRating");
+    if(!estrellas){
+        estrellas = 1
+    }
     const data = {comentario,estrellas}
     try {
 

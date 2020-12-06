@@ -4,40 +4,48 @@ from . import *
 def profile_empresa():
     if "iduser" in session:
         if session["esEmp"] == 1:
+            session["empresaid"] = session["iduser"]
+        elif session["esEmp"] == 0:         
+            empid = request.args.get('empid')
+            print(empid)
+            session["empresaid"]=empid
 
-            empresa = db.session.query(Usuario_emp).filter(Usuario_emp.id == session["iduser"])[0]
-            redes_sociales = db.session.query(Tiene_redes).filter(Tiene_redes.id_empresa == session["iduser"])
-            clientes = empresa.clientes.count()
-            lista_locales = empresa.locales
 
-            
+        empresa = db.session.query(Usuario_emp).filter(Usuario_emp.id == session["empresaid"])[0]
+        redes_sociales = db.session.query(Tiene_redes).filter(Tiene_redes.id_empresa == session["empresaid"])
+        clientes = empresa.clientes.count()
+        lista_locales = empresa.locales
 
-            facebook_url = ""
-            twitter_url = ""
-            instragram_url = ""
+        facebook_url = ""
+        twitter_url = ""
+        instragram_url = ""
+        sigue = 0 
 
-            if db.session.query(Tiene_redes).filter(Tiene_redes.id_empresa == session["iduser"],Tiene_redes.id_red==1).first() is not None :
-                facebook_url = db.session.query(Tiene_redes).filter(Tiene_redes.id_empresa == session["iduser"],Tiene_redes.id_red==1).first().url
+        if db.session.query(Tiene_redes).filter(Tiene_redes.id_empresa == session["empresaid"],Tiene_redes.id_red==1).first() is not None :
+            facebook_url = db.session.query(Tiene_redes).filter(Tiene_redes.id_empresa == session["empresaid"],Tiene_redes.id_red==1).first().url
 
-            if db.session.query(Tiene_redes).filter(Tiene_redes.id_empresa == session["iduser"],Tiene_redes.id_red==2).first() is not None :
-                twitter_url = db.session.query(Tiene_redes).filter(Tiene_redes.id_empresa == session["iduser"],Tiene_redes.id_red==2).first().url
-            if db.session.query(Tiene_redes).filter(Tiene_redes.id_empresa == session["iduser"],Tiene_redes.id_red==3).first() is not None :
-                instragram_url = db.session.query(Tiene_redes).filter(Tiene_redes.id_empresa == session["iduser"],Tiene_redes.id_red==3).first().url
+        if db.session.query(Tiene_redes).filter(Tiene_redes.id_empresa == session["empresaid"],Tiene_redes.id_red==2).first() is not None :
+            twitter_url = db.session.query(Tiene_redes).filter(Tiene_redes.id_empresa == session["empresaid"],Tiene_redes.id_red==2).first().url
+        if db.session.query(Tiene_redes).filter(Tiene_redes.id_empresa == session["empresaid"],Tiene_redes.id_red==3).first() is not None :
+            instragram_url = db.session.query(Tiene_redes).filter(Tiene_redes.id_empresa == session["empresaid"],Tiene_redes.id_red==3).first().url
                 
-            redes_emp = empresa.redes
-            if redes_emp is not None: 
-                for red in redes_emp:
-                    if red.id_red == 1:
-                        facebook_url = red.url
-                    elif red.id_red == 2:
-                        instragram_url =red.url
-                    elif red.id_red == 3:
-                        twitter_url =red.url
-
-            return render_template("profile_company.html", empresa = empresa, num_cli = clientes, locales=lista_locales, redes = redes_sociales,
-            facebook_url=facebook_url,twitter_url=twitter_url,instagram_url=instragram_url)  
-        else:
-            return redirect("/")
+        redes_emp = empresa.redes
+        if redes_emp is not None: 
+            for red in redes_emp:
+                if red.id_red == 1:
+                    facebook_url = red.url
+                elif red.id_red == 2:
+                    instragram_url =red.url
+                elif red.id_red == 3:
+                    twitter_url =red.url
+        if session["esEmp"] == 0:
+            usuario = db.session.query(Usuario_reg).filter(Usuario_reg.id == session["iduser"])[0]      
+            for em in usuario.seguidos:
+                if int(em.id) == int(session["empresaid"]):
+                    sigue = 1
+        print(sigue)
+        return render_template("profile_company.html", empresa = empresa, num_cli = clientes, locales=lista_locales, redes = redes_sociales,
+        facebook_url=facebook_url,twitter_url=twitter_url,instagram_url=instragram_url, sigue=sigue, esEmp=session["esEmp"])  
     else:
         return redirect("/")
 
@@ -140,4 +148,46 @@ def empresa_editar_confirmar():
             return redirect("/")
     else:
         print("Usuario no inicio sesion")
+        return redirect("/")
+
+@routes.route("/seguir", methods=["POST"])
+def seguir_empresa():
+    if "iduser" in session:
+        if session["esEmp"] == 0:
+
+            usuario = db.session.query(Usuario_reg).filter(Usuario_reg.id == session["iduser"])[0]
+            print("Local a seguir: ", session["empresaid"])
+            print(db.session.query(Usuario_emp).filter(Usuario_emp.id == session["empresaid"]).first())
+            emp = db.session.query(Usuario_emp).filter(Usuario_emp.id == session["empresaid"])[0]
+            usuario.seguidos.append(emp)
+
+            db.session.flush()
+            db.session.commit()
+
+            direcc = '/profile_empresa?empid='+ session["empresaid"]
+
+            return redirect(direcc)
+        else:
+            return redirect("/")
+    else:
+        return redirect("/")
+
+@routes.route("/no_seguir", methods=["POST"])
+def no_seguir_empresa():
+    if "iduser" in session:
+        if session["esEmp"] == 0:
+
+            usuario = db.session.query(Usuario_reg).filter(Usuario_reg.id == session["iduser"])[0]
+            emp = db.session.query(Usuario_emp).filter(Usuario_emp.id == session["empresaid"])[0]
+            usuario.seguidos.remove(emp)
+
+            db.session.flush()
+            db.session.commit()
+
+            direcc = '/profile_empresa?empid='+ session["empresaid"]
+
+            return redirect(direcc)
+        else:
+            return redirect("/")
+    else:
         return redirect("/")

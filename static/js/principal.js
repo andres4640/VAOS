@@ -1,113 +1,17 @@
 /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
 
-// window.onload = function(){
-//   fillData();
-
-// };
-
-// function fillData(){
-
- 
-
-    
-// }
-
 function openNav() {
     document.getElementById("mySidebar").style.width = "250px";
     document.getElementById("main").style.marginLeft = "250px";
     document.getElementById("head-logo").style.marginLeft = "250px";
 }
-  
+
 /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
 function closeNav() {
     document.getElementById("mySidebar").style.width = "0";
     document.getElementById("main").style.marginLeft = "0";
     document.getElementById("head-logo").style.marginLeft = "0";
 }
-
-// const locales = [
-//   {
-//     name: "Mia",
-//     location: {
-//       lat: -12.111636798137313,
-//       lng: -77.01464006252493
-//     },
-//     music: "latin",
-//     ambience: "casual"    
-//   },
-//   {
-//     name: "Tumbao",
-//     location: {
-//       lat: -12.12359586458485, lng: -77.03075355990035
-//     },
-//     music: "indie",
-//     ambience: "casual" 
-//   },
-//   {
-//     name: "Loki Bar",
-//     location: {
-//       lat: -12.119826102509654, lng: -77.02843040478278
-//     },
-//     music: "70-80's",
-//     ambience: "cocktail"
-//   },
-//   {
-//     name: "Dansza",
-//     location: {
-//       lat: -12.143180704691417, lng: -77.01571868877515
-//     },
-//     music: "latin",
-//     ambience: "upscale"
-//   },
-//   {
-//     name: "Valetodo Downtown",
-//     location: {
-//       lat: -12.112933892142436, lng: -76.99120614459953
-//     },
-//     music: "indie",
-//     ambience: "cocktail"
-//   },
-//   {
-//     name: "Extasis",
-//     location: {
-//       lat: -12.090678349724094, lng: -77.00331041239865
-//     },
-//     music: "latin",
-//     ambience: "casual"
-//   },
-//   {
-//     name: "80 Divas",
-//     location: {
-//       lat: -12.091046472008946, lng: -77.00009274382735
-//     },
-//     music: "latin",
-//     ambience: "casual"
-//   },
-//   {
-//     name: "La Cachina",
-//     location: {
-//       lat: -12.122589386678968, lng: -77.02988058308185
-//     },
-//     music: "70-80's",
-//     ambience: "casual"
-//   },
-//   {
-//     name: "Hooligans",
-//     location: {
-//       lat: -12.131945386001902, lng: -77.0300951631236
-//     },
-//     music: "latin",
-//     ambience: "casual"
-//   },
-//   {
-//     name: "VICCIO disco",
-//     location: {
-//       lat: -12.104886495253856, lng: -77.01838432301655
-//     },
-//     music: "electro",
-//     ambience: "casual"
-//   },
-// ]
 
 let map, infoWindow;
 
@@ -134,7 +38,7 @@ function initMap() {
   locationButton.textContent = "Current Location";
   locationButton.classList.add("custom-map-control-button");
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-  
+
   locationButton.addEventListener("click", () => {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
@@ -182,7 +86,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 async function fillData(){
-  try 
+  try
   {
 
     const res = await axios.get("/principal/lista-locales")
@@ -192,16 +96,16 @@ async function fillData(){
     console.log("========")
     return lista_locales;
   }
-  catch (error) 
+  catch (error)
   {
-    
+
     console.log(error)
-    
+
   }
-  //return lista_locales; 
+  //return lista_locales;
 
 }
-
+var currWindow =false;
 var locales = [];
 async function createMarkers() {
 
@@ -209,7 +113,8 @@ async function createMarkers() {
   console.log(locales)
   var ubicacion;
 
-  for(let i = 0; i < locales.length; i++) {
+  for(let i = 0; i < locales.length; i++) 
+  {
     console.log("GAAA2");
     ubicacion = {location: { lat: parseFloat(locales[i].latitud),  lng: parseFloat(locales[i].longitud)} }
     console.log(ubicacion);
@@ -218,23 +123,36 @@ async function createMarkers() {
       position: ubicacion.location ,
       map: map,
       animation: google.maps.Animation.DROP,
-    });
+    })
+
+
+    const contentString = '<h1 id="firstHeading" class="firstHeading">' + locales[i].nombre + '</h1>' +
+    '<p><a href="/profile_local?localid='+locales[i].id + '">Ingresar a local</a></p>'
 
     infoWindow = new google.maps.InfoWindow();
 
-    google.maps.event.addListener(marker, "click",(function(marker) {
-      return function(evt) {
-      populateInfoWindow(marker, infoWindow);
-      infoWindow.open(map, marker);
-    }
-    })(marker))
-    
+    google.maps.event.addListener(marker, "click",(function(marker, contentString, infoWindow) {
+      return function(evt) 
+      {
+        if( currWindow ) {
+          currWindow.close();
+        } 
+        currWindow = infoWindow;
+
+        console.log("Evento Click InfoWindow")
+        infoWindow.setContent(contentString)
+        infoWindow.open(map, marker);
+
+      }
+    })(marker, contentString, infoWindow))
+
   }
 }
 
-function populateInfoWindow(marker, info) {
-  if(info.Marker != marker) {
-    info.setContent("GAAA");
-    //info.setContent(marker.content);
-  }
-}
+
+$("#boton_seguir").on('click',function(){
+  $('#formulario-seguir').submit();
+})
+$("#boton-no-seguir").on('click',function(){
+  $('#formulario-no-seguir').submit();
+})

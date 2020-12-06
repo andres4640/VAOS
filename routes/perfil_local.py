@@ -1,7 +1,7 @@
 from . import *
 import json, math
 
-@routes.route("/profile_local") #, methods=["GET"])
+@routes.route("/profile_local")
 def profile_local():
     if "iduser" in session:
          
@@ -13,22 +13,27 @@ def profile_local():
         lista_musicas = db.session.query(Tipo_musica)
         esEmp = session["esEmp"]
 
+        session["empresaid"]= local.id_empresa
+        emp = db.session.query(Usuario_emp).filter(Usuario_emp.id == session["empresaid"])[0]
+        nombre_emp = emp.nombre
+
         num_estrellas_aprox=0
         num_estrellas=0
         count=0
+
         lista_valoraciones = db.session.query(Valoracion).filter(Valoracion.id_local == localId)
+
+        
         if lista_valoraciones.count() != 0:
-            for estrellas in lista_valoraciones:
+            for estrellas in lista_valoraciones:    
                 num_estrellas += estrellas.estrellas
                 count +=1
             
             total = num_estrellas/count
             num_estrellas_aprox = math.ceil(total)
-        print(count)
-        print(num_estrellas_aprox)
 
         valoraciones = db.session.query(Valoracion, Usuario_reg).join(Usuario_reg,Usuario_reg.id == Valoracion.id_regular).filter(Valoracion.id_local == localId)
-        return render_template("profile_local.html", local=local, horario=horario, lista_ambientes=lista_ambiente, lista_musica=lista_musicas, esEmp=esEmp, valoraciones=valoraciones, num_estrellas=num_estrellas_aprox, count=count)  
+        return render_template("profile_local.html", local=local, horario=horario, lista_ambientes=lista_ambiente, lista_musica=lista_musicas, esEmp=esEmp, valoraciones=valoraciones, num_estrellas=num_estrellas_aprox, count=count, empresaid=session["empresaid"], nombre_emp=nombre_emp)  
         
     else:
         return redirect("/")
@@ -108,18 +113,16 @@ def reseña():
             db.session.commit()
 
             return json.dumps({'success':True}), 201, {'ContentType':'application/json'}
-            #redirect("/profile_local")
 
         else:
             print("Usuario no es empresa")
-            #return json.dumps({'success':True}, 201, {'ContentType':'application/json'})
             return redirect("/") 
 
     else:
-        #return json.dumps({'success':True}), 201, {'ContentType':'application/json'}
         return redirect("/")
 
 @routes.route('/obtener_rating', methods = ['POST'])
 def obtener_rating():
     jsdata = request.form['javascript_data']
     return json.loads(jsdata)[0]
+

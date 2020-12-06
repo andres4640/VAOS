@@ -3,9 +3,11 @@ from . import *
 @routes.route("/")
 def index():
     if "iduser" in session:
-        return redirect("/principal")
+        return redirect("/inicio")
     else:
         return render_template("login_client.html")
+
+
 
 @routes.route("/login", methods=["POST"])
 def login():
@@ -20,7 +22,7 @@ def login():
         session["iduser"] = usuario_reg[0].id
         session["esEmp"] = 0
         print("Usuario Regular valido")
-        return redirect(url_for("routes.principal"))
+        return redirect(url_for("routes.inicio"))
 
     elif usuario_emp.count() == 1:   
         session["iduser"] = usuario_emp[0].id
