@@ -36,11 +36,6 @@
     margin-left: 50px;
 }
 
-#logout {
-    font-size: medium;
-    position: static;
-}
-
 /* The button used to open the sidebar */
 .openbtn {
     font-size: 20px;
@@ -57,11 +52,9 @@
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
-    transition: margin-left .5s; /* If you want a transition effect */
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-bottom: 100px;
+  transition: margin-left .5s; /* If you want a transition effect */
 }
+
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
@@ -86,41 +79,5 @@
     height: 50px;
 }
 
-body {
-    background-color: #F3F3F3;
-}
-
-.user-container {
-    margin: auto;
-    max-width: 1200px;
-    background-color: white;
-}
-
-.user-info {
-    padding-right: 5%;
-    padding-left: 5%;
-    padding-top: 2%;
-    padding-bottom: 5%;
-}
-
-/* CALENDARIO */
-
-@media (max-width:575px) {
-    .display-4 {
-        font-size: 1.5rem;
-    }
-    .day h5 {
-        background-color: #f8f9fa;
-        padding: 3px 5px 5px;
-        margin: -8px -8px 8px -8px;
-    }
-    .date {
-        padding-left: 4px;
-    }
-}
-
-@media (min-width: 576px) {
-    .day {
-        height: 10vw;
-    }
-}
+@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700);
+@import url(https://raw.github.com/FortAwesome/Font-Awesome/master/docs/assets/css/font-awesome.min.css);

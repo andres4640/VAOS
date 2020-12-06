@@ -11,6 +11,7 @@
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <!-- <link rel="stylesheet" href="../static/principal.css"> -->
   <link rel="stylesheet" href="{{ url_for('static', filename='principal.css')}}">
+  <link rel="stylesheet" href="../static/header.css">
   <!-- <link rel="stylesheet" href="../libs/v6.4.3-dist/ol.css"> -->
   <link rel="stylesheet" href="{{ url_for('static', filename='ol.css')}}">
   
@@ -36,11 +37,10 @@
 
   <div id="mySidebar" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/inicio">Inicio</a>
     <a href="/profile_cliente">Perfil</a>
-    <a href="/calendario">Calendario</a>
-    <a href="#">Favoritos</a>
-    <a href="#">Ajustes</a>
-    <a id="logout" href="/cerrar_sesion">Cerrar sesión</a>
+    <a href="eventos_emp_seguidas.html">Seguidos</a>
+    <a href="/cerrar_sesion">Cerrar sesión</a>
   </div>  
   
   <div id="main">

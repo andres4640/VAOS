@@ -87,7 +87,7 @@ class Usuario_emp(db.Model):
 class Nacionalidad(db.Model):
     __tablename__ = "nacionalidad"
     id = db.Column(db.Integer, primary_key=True)
-    pais = db.Column(db.String(30)) 
+    pais = db.Column(db.String(150)) 
 
     usuarios = db.relationship(
         "Usuario_reg", 
