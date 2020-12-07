@@ -64,7 +64,7 @@
     <a href="/profile_cliente">Perfil</a>
     <a href="/eventos_seguidos">Seguidos</a>
     <a href="/cerrar_sesion">Cerrar sesión</a>
-  </div>   
+  </div>
   {% endif %}
 
 
@@ -85,7 +85,7 @@
           <form action="/eliminar_local?localid={{local.id}}" method="post" id="formulario-eliminar">
             <button type="button" class="btn btn-danger" id="eliminar-local">Eliminar local</button>
           </form>
-          
+
           {% endif %}
           <!-- Modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -213,9 +213,9 @@
                 <strong>DISCOTECA</strong>
                 {% endif %}
               </div>
-              
+
             </div>
-            
+
 
           </div>
 
@@ -229,21 +229,36 @@
           <span class="fa fa-star checked"></span>
           {% endfor %}
           {% for i in range(5-num_estrellas) %}
-          <span class="fa fa-star"></span> 
+          <span class="fa fa-star"></span>
           {% endfor %}
 
           <small class="text-muted">{{count | safe}} </small>
 
-          <!--
-          <p>Fecha de nacimiento: <small>05/09/1999</small></p>
-          <p>Nacionalidad: <small>05/09/1999</small></p>
-          <p>Género: <small>05/09/1999</small></p>
-          -->
           <div class="info">
+            <small><b>Descripcion:</b></small>
+            <br>
             <small>
               {{local.descripcion | safe}}
             </small>
           </div>
+          <div class="info">
+            <small><b>Ambientes:</b></small>           
+            <ul>
+              {% for amb in ambientes_local %}
+              <li><small>{{amb.ambiente | safe}}</small></li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <div class="info">
+            <small><b>Musicas:</b></small> 
+            <ul>
+              {% for mus in musicas_local %}
+              <li><small>{{mus.musica | safe}}</small></li>
+              {% endfor %}
+            </ul>
+          </div>
+          
           <br>
           <div class="carta">
             <div class="TITULO_CARTA">
@@ -284,168 +299,171 @@
           </div>
 
           <br>
-          <div class="valoraciones">
+
+          <div class="container">
             <div class="TITULO_valoraciones">
               <strong>EVENTOS</strong>
             </div>
-          <div class="container py-4">
-            <div class="card-deck-wrapper">
-                <div class="card-deck">
-                  {% if hay_eventos == 1 %}
-                    {% for evento in eventos %}
-                      <div class="card p-4">
-                          <a class="card-block stretched-link text-decoration-none text-reset" href="/profile_evento?empid={{evento.id}}">
-                              <h4 class="card-title">{{evento.nombre | safe }}</h4>
-                            
-                              <p class="card-text"> <b>Fecha Inicio: </b> {{ evento.fechaInicio | safe }}</p>
-                              <p class="card-text"> <b>Fecha Fin:</b> {{ evento.fechaFin | safe }}</p>
-                              <p class="card-text"> <b>Descripcion:</b> {{ evento.descripcion | safe }}</p>
-                          </a>
-                      </div>
-                    {% endfor %}
-                  {% elif hay_eventos == 0 %}
-                  <p>No hay eventos...</p>
-                  {% endif %}
+            <div class="container py-4">
+              <div class="row">
+                {% if hay_eventos == 1 %}
+                {% for evento in eventos %}
+                <div class="col-sm-12 col-md-4 mb-4">
+                  <div class="card p-4 h-100">
+                    <a class="card-block stretched-link text-decoration-none text-reset"
+                      href="/profile_evento?empid={{evento.id}}">
+                      <h4 class="card-title">{{evento.nombre | safe }}</h4>
+                      <p class="card-text"> <b>Fecha Inicio: </b> {{ evento.fechaInicio | safe }}</p>
+                      <p class="card-text"> <b>Fecha Fin:</b> {{ evento.fechaFin | safe }}</p>
+                      <p class="card-text"> <b>Descripcion:</b> {{ evento.descripcion | safe }}</p>
+                    </a>
+                  </div>
                 </div>
-            </div>
-          </div>
+                {% endfor %}
+                {% elif hay_eventos == 0 %}
+                <p>No hay eventos...</p>
+                {% endif %}
+              </div>
 
-          <div class="valoraciones">
-            <div class="TITULO_valoraciones">
-              <strong>VALORACIONES</strong>
             </div>
 
-            <div class="nueva-valoracion">
-              {% if esEmp == 0 %}
-              <button class="btn btn-light" data-toggle="modal" data-target="#reviewFormModal">
-                <img src="../static/img/lapiz.png" />
-                Escribir una reseña
-              </button>
-              {% endif %}
-              <div class="modal fade" id="reviewFormModal" tabindex="-1" aria-labelledby="reviewFormModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h4 class="modal-title" id="reviewFormModalLabel">Reseña</h4>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <form id="form-valoracion">
-                        <div class="form-group">
-                          <textarea class="form-control animated mb-4" cols="50" id="new-review" name="comentario"
-                            placeholder="Escribe tu reseña aquí..." rows="5"></textarea>
-                        </div>
-                        <div class="form-group stars-new-review">
-                          <span onmouseover="starmark(this)" onclick="starmark(this)" id="1one"
-                            class="fa fa-star checked" name=""></span>
-                          <span onmouseover="starmark(this)" onclick="starmark(this)" id="2one"
-                            class="fa fa-star "></span>
-                          <span onmouseover="starmark(this)" onclick="starmark(this)" id="3one"
-                            class="fa fa-star "></span>
-                          <span onmouseover="starmark(this)" onclick="starmark(this)" id="4one"
-                            class="fa fa-star"></span>
-                          <span onmouseover="starmark(this)" onclick="starmark(this)" id="5one"
-                            class="fa fa-star"></span>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                          <button type="button" class="btn btn-success" id="enviarClick">Enviar</button>
-                        </div>
-                      </form>
+
+            <div class="valoraciones">
+              <div class="TITULO_valoraciones">
+                <strong>VALORACIONES</strong>
+              </div>
+              <div class="nueva-valoracion">
+                {% if esEmp == 0 %}
+                <button class="btn btn-light" data-toggle="modal" data-target="#reviewFormModal">
+                  <img src="../static/img/lapiz.png" />
+                  Escribir una reseña
+                </button>
+                {% endif %}
+                <div class="modal fade" id="reviewFormModal" tabindex="-1" aria-labelledby="reviewFormModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title" id="reviewFormModalLabel">Reseña</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form id="form-valoracion">
+                          <div class="form-group">
+                            <textarea class="form-control animated mb-4" cols="50" id="new-review" name="comentario"
+                              placeholder="Escribe tu reseña aquí..." rows="5"></textarea>
+                          </div>
+                          <div class="form-group stars-new-review">
+                            <span onmouseover="starmark(this)" onclick="starmark(this)" id="1one"
+                              class="fa fa-star checked" name=""></span>
+                            <span onmouseover="starmark(this)" onclick="starmark(this)" id="2one"
+                              class="fa fa-star "></span>
+                            <span onmouseover="starmark(this)" onclick="starmark(this)" id="3one"
+                              class="fa fa-star "></span>
+                            <span onmouseover="starmark(this)" onclick="starmark(this)" id="4one"
+                              class="fa fa-star"></span>
+                            <span onmouseover="starmark(this)" onclick="starmark(this)" id="5one"
+                              class="fa fa-star"></span>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-success" id="enviarClick">Enviar</button>
+                          </div>
+                        </form>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <br>
+              <br>
 
-            <div class="comentarios">
-              {% for val in valoraciones %}
-              <div class="row mb-4 justify-content-center">
-                
-                <div class="col-2" style="text-align: center;">
-                  <img src="../static/img/user.png" alt="" class="user_foto_mini">
+              <div class="comentarios">
+                {% for val in valoraciones %}
+                <div class="row mb-4 justify-content-center">
+
+                  <div class="col-2" style="text-align: center;">
+                    <img src="../static/img/user.png" alt="" class="user_foto_mini">
+                  </div>
+
+
+                  <div class="col-8 texto_comentario">
+                    <small>
+                      <b>{{val[1].nombre_usuario | safe}}</b>
+                    </small>
+                    <br>
+                    {% for i in range(val[0].estrellas) %}
+                    <span class="fa fa-star checked"></span>
+                    {% endfor %}
+                    {% for i in range(5-val[0].estrellas) %}
+                    <span class="fa fa-star"></span>
+                    {% endfor %}
+
+                    <br>
+                    <small>
+                      {{val[0].comentario | safe}}
+                    </small>
+                  </div>
+
                 </div>
-                
-                
-                <div class="col-8 texto_comentario">
-                  <small>
-                    <b>{{val[1].nombre_usuario | safe}}</b>   
-                  </small>
-                  <br>
-                  {% for i in range(val[0].estrellas) %}
-                  <span class="fa fa-star checked"></span>
-                  {% endfor %}
-                  {% for i in range(5-val[0].estrellas) %}
-                  <span class="fa fa-star"></span> 
-                  {% endfor %}
-
-                  <br>
-                  <small>
-                    {{val[0].comentario | safe}}   
-                  </small>
-                </div>
-                
+                {% endfor %}
               </div>
-              {% endfor %}
-            </div>
 
+
+            </div>
 
           </div>
-
         </div>
+
       </div>
 
     </div>
 
-  </div>
+    <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+      <div class="container text-center">
+        <small>Copyright &copy; VAOS</small>
+      </div>
+    </footer>
 
-  <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
-    <div class="container text-center">
-      <small>Copyright &copy; VAOS</small>
-    </div>
-  </footer>
+    <script>
+      // Get the modal
+      var modal = document.getElementById("myModal");
 
-  <script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
+      // Get the image and insert it inside the modal - use its "alt" text as a caption
+      var img = document.getElementById("myImg");
+      var modalImg = document.getElementById("img01");
+      var captionText = document.getElementById("caption");
+      img.onclick = function () {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText.innerHTML = this.alt;
+      }
 
-    // Get the image and insert it inside the modal - use its "alt" text as a caption
-    var img = document.getElementById("myImg");
-    var modalImg = document.getElementById("img01");
-    var captionText = document.getElementById("caption");
-    img.onclick = function () {
-      modal.style.display = "block";
-      modalImg.src = this.src;
-      captionText.innerHTML = this.alt;
-    }
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-      modal.style.display = "none";
-    }
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function () {
+        modal.style.display = "none";
+      }
 
 
-  </script>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCMqxtH3MtWNmuEq3ITdU0hdN-O3YB3HVY"></script>
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCMqxtH3MtWNmuEq3ITdU0hdN-O3YB3HVY"></script>
 
-  <!-- <script src="../static/js/profile_local.js"></script> -->
+    <!-- <script src="../static/js/profile_local.js"></script> -->
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="{{ url_for('static', filename='js/profile_local.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{{ url_for('static', filename='js/profile_local.js')}}"></script>
 
 </body>
 

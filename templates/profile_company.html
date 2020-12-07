@@ -59,7 +59,7 @@
     <a href="/profile_cliente">Perfil</a>
     <a href="/eventos_seguidos">Seguidos</a>
     <a href="/cerrar_sesion">Cerrar sesión</a>
-  </div>   
+  </div>
   {% endif %}
 
   <div id="main">
@@ -74,26 +74,27 @@
           <div class="row">
             <div class="col">
               <!-- Button trigger modal -->
-            {% if esEmp == 0 %}
+              {% if esEmp == 0 %}
               {% if sigue == 0 %}
               <form id="formulario-seguir" action="/seguir" method="POST"></form>
-                <button type="button" class="btn btn-success" id="boton_seguir">Seguir</button>
+              <button type="button" class="btn btn-success" id="boton_seguir">Seguir</button>
               </form>
               {% endif %}
               {% if sigue == 1 %}
               <form id="formulario-no-seguir" action="/no_seguir" method="POST"></form>
-                <button type="button" class="btn btn-secondary" id="boton-no-seguir">Dejar de seguir</button>
+              <button type="button" class="btn btn-secondary" id="boton-no-seguir">Dejar de seguir</button>
               </form>
               {% endif %}
               <br><br>
-            {% endif %}
-            {% if esEmp == 1 %}
+              {% endif %}
+              {% if esEmp == 1 %}
               <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
                 Editar
               </button>
-            {% endif %}
+              {% endif %}
               <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -103,13 +104,14 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      
-                      <form id ="formulario" action="/empresa_editar_confirmar" method="POST">
+
+                      <form id="formulario" action="/empresa_editar_confirmar" method="POST">
                         <div class="row">
                           <div class="col">
                             <div class="form-group" style="text-align: left;">
                               <label for="nombre">Nombre</label>
-                              <input type="text" class="form-control" id="nombre" name="nombre" value="{{empresa.nombre | safe}}">
+                              <input type="text" class="form-control" id="nombre" name="nombre"
+                                value="{{empresa.nombre | safe}}">
                             </div>
                           </div>
                         </div>
@@ -118,7 +120,8 @@
                           <div class="col">
                             <div class="form-group" style="text-align: left;">
                               <label for="correo">Correo</label>
-                              <input type="email" class="form-control" id="correo" placeholder="name@example.com" name="correo" value="{{empresa.correo | safe}}">
+                              <input type="email" class="form-control" id="correo" placeholder="name@example.com"
+                                name="correo" value="{{empresa.correo | safe}}">
                             </div>
                           </div>
                         </div>
@@ -126,7 +129,8 @@
                           <div class="col">
                             <div class="form-group" style="text-align: left;">
                               <label for="telefono">Télefono</label>
-                              <input type="text" class="form-control" id="telefono" name="telefono" value="{{empresa.telefono | safe}}">
+                              <input type="text" class="form-control" id="telefono" name="telefono"
+                                value="{{empresa.telefono | safe}}">
                             </div>
                           </div>
                         </div>
@@ -134,20 +138,23 @@
                           <div class="col">
                             <div class="form-group" style="text-align: left;">
                               <label for="nombres">Redes Sociales</label>
-                                <div class="row">
-                                  <div class="col">
-                                    <input type="text" class="form-control" id="facebook" name="facebook" placeholder="Facebook" value="{{facebook_url | safe}}">
-                                  </div>
-                                  <div class="col">
-                                    <input type="text" class="form-control" id="instagram" name="instagram" placeholder="Instagram" value="{{instagram_url | safe}}">
-                                  </div>
+                              <div class="row">
+                                <div class="col">
+                                  <input type="text" class="form-control" id="facebook" name="facebook"
+                                    placeholder="Facebook" value="{{facebook_url | safe}}">
                                 </div>
-                                <br>
-                                <div class="row">
-                                  <div class="col-6">
-                                    <input type="text" class="form-control" id="twitter" name="twitter" placeholder="Twitter" value="{{twitter_url | safe}}">
-                                  </div>
+                                <div class="col">
+                                  <input type="text" class="form-control" id="instagram" name="instagram"
+                                    placeholder="Instagram" value="{{instagram_url | safe}}">
                                 </div>
+                              </div>
+                              <br>
+                              <div class="row">
+                                <div class="col-6">
+                                  <input type="text" class="form-control" id="twitter" name="twitter"
+                                    placeholder="Twitter" value="{{twitter_url | safe}}">
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -158,7 +165,7 @@
 
                       </form>
                     </div>
-   
+
                   </div>
                 </div>
               </div>
@@ -190,7 +197,7 @@
           <br><br>
         </div>
 
-        
+
       </div>
 
       <div class="row  justify-content-center">
@@ -198,24 +205,23 @@
           <span>LOCALES</span>
         </h4>
       </div>
-
       <div class="container py-4">
-        <div class="card-deck-wrapper">
-            <div class="card-deck">
-
-              {% for local in locales %}
-                <div class="card p-4">
-                    <a class="card-block stretched-link text-decoration-none text-reset" href="/profile_local?localid={{local.id}}">
-                        <h4 class="card-title">{{ local.nombre | safe }}</h4>
-                        <p class="card-text">{{ local.descripcion | safe }}</p>
-                    </a>
-                </div>
-                {% endfor %}
+        <div class="row">
+          {% for local in locales %}
+          <div class="col-sm-12 col-md-4 mb-4">
+            <div class="card p-4 h-100">
+              <a class="card-block stretched-link text-decoration-none text-reset"
+                href="/profile_local?localid={{local.id}}">
+                <h4 class="card-title">{{ local.nombre | safe }}</h4>
+                <p class="card-text">{{ local.direccion | safe }}</p>
+              </a>
             </div>
+          </div>
+          {% endfor %}
         </div>
       </div>
-      </div>
     </div>
+  </div>
   </div>
 
   <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
@@ -224,7 +230,7 @@
     </div>
   </footer>
 
-  
+
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>

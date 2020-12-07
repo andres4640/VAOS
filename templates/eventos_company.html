@@ -56,92 +56,74 @@
 
         <div class="container user-container shadow p-3 mb-5 rounded-lg">
             <div class="row justify-content-around titulo">
-                
-                <div class="col-6">
-                    <h2><strong >EVENTOS</strong></h2>
-                </div>    
 
                 <div class="col-6">
-                    <a href="/registrar_evento_vista"><button type="button" class="btn btn-dark">Crear evento</button></a>
+                    <h2><strong>EVENTOS</strong></h2>
+                </div>
+
+                <div class="col-6">
+                    <a href="/registrar_evento_vista"><button type="button" class="btn btn-dark">Crear
+                            evento</button></a>
                 </div>
             </div>
-                    {% with mensaje = get_flashed_messages(category_filter=["exito_evento"]) %}
-                        {% if mensaje %}
-                        <div class="alert alert-success" role="alert">
-                            {%- for men in mensaje %}
-                                <p>{{men | safe}}</p>
-                            {% endfor -%}
-                        </div>
-                        {% endif %}
-                    {% endwith %}
+            {% with mensaje = get_flashed_messages(category_filter=["exito_evento"]) %}
+            {% if mensaje %}
+            <div class="alert alert-success" role="alert">
+                {%- for men in mensaje %}
+                <p>{{men | safe}}</p>
+                {% endfor -%}
+            </div>
+            {% endif %}
+            {% endwith %}
 
-            <!---
-            <div class="row locales">
-                
-                <div class="col local">
-
-                </div>
-                
-            </div> -->
             <div class="container py-4">
-                <div class="card-deck-wrapper">
-                    <div class="card-deck">
-                        {% for evento in lista_eventos %}
-                        <div class="card p-4">
-                            <a class="card-block stretched-link text-decoration-none text-reset" href="/profile_evento?empid={{evento.id}}">
-                                <h4 class="card-title">{{ evento.nombre | safe }}</h4>
-                                <p class="card-text">{{ evento.fechaInicio | safe }}</p>
-                                <p class="card-text">{{ evento.fechaFin | safe }}</p>
+                <div class="row">
+                    {% for evento in lista_eventos %}
+                    <div class="col-sm-12 col-md-4 mb-4">
+                        <div class="card p-4 h-100">
+                            <a class="card-block stretched-link text-decoration-none text-reset"
+                                href="/profile_evento?empid={{evento.id}}">
+                                <h4 class="card-title">{{evento.nombre | safe }}</h4>
+                                <p class="card-text"> <b>Fecha Inicio: </b> {{ evento.fechaInicio | safe }}</p>
+                                <p class="card-text"> <b>Fecha Fin:</b> {{ evento.fechaFin | safe }}</p>
+                                <p class="card-text"> <b>Descripcion:</b> {{ evento.descripcion | safe }}</p>
                             </a>
                         </div>
-                        {% endfor %}    
-                        <!-- <div class="card p-4">
-                            <a class="card-block stretched-link text-decoration-none text-reset" href="/">
-                                <h4 class="card-title">MIA</h4>
-                                <p class="card-text">Jirón Monterrey 170, Santiago de Surco 15038</p>
-                            </a>
-                        </div>
-                        <div class="card p-4">
-                            <a class="card-block stretched-link text-decoration-none text-reset" href="/">
-                                <h4 class="card-title">MR FISH</h4>
-                                <p class="card-text">calle 7 , 8050 urb. Pro 2da estapa Lima, 15307</p>
-                            </a>
-                        </div> -->
                     </div>
+                    {% endfor %}
                 </div>
             </div>
-            
         </div>
     </div>
 
-            <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
-                <div class="container text-center">
-                    <small>Copyright &copy; VAOS</small>
-                </div>
-            </footer>
+    <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+        <div class="container text-center">
+            <small>Copyright &copy; VAOS</small>
+        </div>
+    </footer>
 
 
 
-            <script src="../static/js/principal.js"></script>
-            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-                crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-                integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-                crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-                integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-                crossorigin="anonymous"></script>
+    <script src="../static/js/principal.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
 
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-                crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-                crossorigin="anonymous"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-                crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

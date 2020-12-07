@@ -126,7 +126,7 @@ async function createMarkers() {
     })
 
 
-    const contentString = '<h1 id="firstHeading" class="firstHeading">' + locales[i].nombre + '</h1>' +
+    const contentString = '<h3 id="firstHeading" class="firstHeading">' + locales[i].nombre + '</h1>' +
     '<p><a href="/profile_local?localid='+locales[i].id + '">Ingresar a local</a></p>'
 
     infoWindow = new google.maps.InfoWindow();

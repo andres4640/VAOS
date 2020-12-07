@@ -40,10 +40,12 @@ def profile_local():
                 
                 total = num_estrellas/count
                 num_estrellas_aprox = math.ceil(total)
+            ambientes_local = local.ambientes
+            musicas_local = local.musicas
 
             valoraciones = db.session.query(Valoracion, Usuario_reg).join(Usuario_reg,Usuario_reg.id == Valoracion.id_regular).filter(Valoracion.id_local == localId)
             return render_template("profile_local.html", local=local, horario=horario, lista_ambientes=lista_ambiente, lista_musica=lista_musicas, esEmp=esEmp, valoraciones=valoraciones, num_estrellas=num_estrellas_aprox, count=count, empresaid=session["empresaid"], nombre_emp=nombre_emp,
-            eventos=lista_eventos, hay_eventos=hay_eventos)  
+            eventos=lista_eventos, hay_eventos=hay_eventos, ambientes_local=ambientes_local,musicas_local=musicas_local )  
             
         else:
             return redirect("/")
