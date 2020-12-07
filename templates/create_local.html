@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <div class="container" >
+  <div class="container">
     <div class="row justify-content-center align-items-center">
       <div class="col-lg-6 col-md-8 col-10">
         <h1>NUEVO LOCAL</h1>
@@ -31,18 +31,20 @@
 
         <form id="form-createLocal">
           <div class="form-group">
-                <label for="nombre">Nombre del local</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" maxlenght="100">
+            <label for="nombre">Nombre del local</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" 
+            oninput='javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);' maxlength="90">
           </div>
           <div class="form-group">
             <label for="ubicacion">Ubicación del local</label>
-            <input type="text" class="form-control" id="ubicacion" name="direccion" maxlength="100" placeholder="Escribe la dirección de tu local...">
+            <input type="text" class="form-control" id="ubicacion" name="direccion" maxlength="100"
+              placeholder="Escribe la dirección de tu local...">
           </div>
           <div class="form-group">
             <label for="local">Tipo de local</label>
             <select class="form-control" id="local" name="tipo_local">
               <option value="1" selected>Bar</option>
-              <option value="2" >Discoteca</option>
+              <option value="2">Discoteca</option>
             </select>
           </div>
           <div class="row">
@@ -65,10 +67,11 @@
                 <label for="tpambiente">Tipo de ambiente</label>
                 {% for amb in lista_ambientes %}
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value= "{{amb.id | safe}}" id="casual" name="ambientes">
+                  <input class="form-check-input" type="checkbox" value="{{amb.id | safe}}" id="casual"
+                    name="ambientes">
                   <label class="form-check-label" for="defaultCheck1">
                     {{ amb.ambiente | safe}}
-                  </label> 
+                  </label>
                 </div>
                 {% endfor %}
               </div>
@@ -78,7 +81,8 @@
                 <label for="tpmusica">Tipo de música</label>
                 {% for mus in lista_musica %}
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value= "{{mus.id | safe}}" id="cocktail" name="musicas">
+                  <input class="form-check-input" type="checkbox" value="{{mus.id | safe}}" id="cocktail"
+                    name="musicas">
                   <label class="form-check-label" for="defaultCheck1">
                     {{ mus.musica | safe }}
                   </label>
@@ -87,21 +91,13 @@
               </div>
             </div>
           </div>
-          
+
           <br>
           <div class="form-group">
             <label for="descripcion">Descripción</label>
             <textarea class="form-control" id="descripcion" rows="8" name="descripcion"></textarea>
           </div>
-          <div class="form-group">
-            <label for="fprincipal">Foto principal</label>
-            <button id="fprincipal" type="button" class="btn btn-secondary btn-sm">+ SUBIR FOTO</button>
-          <div class="form-group">
-            <label for="fcarta">Foto carta</label>
-            <button id="fcarta" type="button" class="btn btn-secondary btn-sm">+ SUBIR FOTO</button>
-          </div>  
-          </div>
-          <div class="text-center">
+          <div class="text-center row ml-1">
             <button id="save" type="button" class="btn btn-dark col-3">Guardar</button>
           </div>
         </form>
@@ -111,7 +107,9 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCMqxtH3MtWNmuEq3ITdU0hdN-O3YB3HVY"></script>
+<script
+  src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCMqxtH3MtWNmuEq3ITdU0hdN-O3YB3HVY"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="{{ url_for('static', filename='js/create_local.js')}}"></script>
+
 </html>

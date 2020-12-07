@@ -111,7 +111,9 @@
                             <div class="form-group" style="text-align: left;">
                               <label for="nombre">Nombre</label>
                               <input type="text" class="form-control" id="nombre" name="nombre"
-                                value="{{empresa.nombre | safe}}">
+                                value="{{empresa.nombre | safe}}"
+                                oninput='javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);'
+                                maxlength="90">
                             </div>
                           </div>
                         </div>
@@ -121,7 +123,9 @@
                             <div class="form-group" style="text-align: left;">
                               <label for="correo">Correo</label>
                               <input type="email" class="form-control" id="correo" placeholder="name@example.com"
-                                name="correo" value="{{empresa.correo | safe}}">
+                                name="correo" value="{{empresa.correo | safe}}"
+                                oninput='javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);'
+                                maxlength="90">
                             </div>
                           </div>
                         </div>
@@ -130,7 +134,8 @@
                             <div class="form-group" style="text-align: left;">
                               <label for="telefono">Télefono</label>
                               <input type="text" class="form-control" id="telefono" name="telefono"
-                                value="{{empresa.telefono | safe}}">
+                                value="{{empresa.telefono | safe}}" oninput='javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);'
+                                maxlength="9">
                             </div>
                           </div>
                         </div>
