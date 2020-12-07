@@ -32,11 +32,11 @@
         <form id="form-createLocal">
           <div class="form-group">
                 <label for="nombre">Nombre del local</label>
-                <input type="text" class="form-control" id="nombre" name="nombre">
+                <input type="text" class="form-control" id="nombre" name="nombre" maxlenght="100">
           </div>
           <div class="form-group">
             <label for="ubicacion">Ubicación del local</label>
-            <input type="text" class="form-control" id="ubicacion" name="direccion" placeholder="Escribe la dirección de tu local...">
+            <input type="text" class="form-control" id="ubicacion" name="direccion" maxlength="100" placeholder="Escribe la dirección de tu local...">
           </div>
           <div class="form-group">
             <label for="local">Tipo de local</label>
@@ -49,13 +49,13 @@
             <div class="col">
               <div class="form-group">
                 <label for="hapertura">Hora de apertura</label>
-                <input type="time" class="form-control" id="hapertura" name="horaApertura">
+                <input type="time" class="form-control" id="hapertura" name="horaApertura" maxlength="10">
               </div>
             </div>
             <div class="col">
               <div class="form-group">
                 <label for="hcierre">Hora de cierre</label>
-                <input type="time" class="form-control" id="hcierre" name="horaCierre">
+                <input type="time" class="form-control" id="hcierre" name="horaCierre" maxlength="10">
               </div>
             </div>
           </div>
