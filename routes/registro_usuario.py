@@ -7,7 +7,9 @@ def registrar_us():
         if "iduser" in session:
             return redirect("/principal")
         else:
-            return render_template("signup_client.html")
+            nacionalidades = db.session.query(Nacionalidad).all()
+            
+            return render_template("signup_client.html", nacionalidades=nacionalidades)
     except:
         e = sys.exc_info()[0]
         print("Unexpected error: ", e)
@@ -48,7 +50,8 @@ def registrar_regular():
                     genero=genero,
                     nombre_usuario=nombre_usuario,
                     fecha_nacimiento = nacimiento,
-                    contraseña = contraseña
+                    contraseña = contraseña,
+                    id_nacionalidad = nacionalidad
                     )
                 
                 db.session.add(usuario)

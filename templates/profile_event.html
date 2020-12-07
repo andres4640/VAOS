@@ -11,6 +11,7 @@
   <!-- <link rel="stylesheet" href="../static/profile_company.css"> -->
   <link rel="stylesheet" href="{{ url_for('static', filename='profile_company.css')}}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='header.css')}}">
 </head>
 
 <body>
@@ -23,7 +24,7 @@
 
       <div class="col-lg-6 col-md-8 col-sm-8 col-6 text-center">
         <div id="head-logo" class="text-center">
-          <a href="principal.html">
+          <a href="/inicio">
             <img id="logo" src="../static/img/logo.png" id="logohead">
           </a>
         </div>
@@ -41,51 +42,73 @@
 
   </header>
 
+  {% if esEmp == 1 %}
   <div id="mySidebar" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="/profile_empresa">Perfil</a>
     <a href="/locales">Locales</a>
     <a href="/eventos">Eventos</a>
-    <a id="logout" href="/cerrar_sesion">Cerrar sesión</a>
+    <a href="/cerrar_sesion">Cerrar sesión</a>
   </div>
+  {% endif %}
+  {% if esEmp == 0 %}
+  <div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/inicio">Inicio</a>
+    <a href="/profile_cliente">Perfil</a>
+    <a href="/eventos_seguidos">Seguidos</a>
+    <a href="/cerrar_sesion">Cerrar sesión</a>
+  </div>   
+  {% endif %}
 
 
   <div id="main">
 
     <div class="container user-container shadow p-3 mb-5 rounded-lg">
+
+      
       <div class="row justify-content-center">
-        
-        
+
+    
         <div class="col text-center" id="portada">
           <img src="../static/img/user.png" class="user_foto">
           <div>
-            <h2><strong>Nombre evento</strong></h2>
+            <h2><strong>{{ evento.nombre | safe}}</strong></h2>
           </div>
+          
         </div>
       </div>
 
       <div class="row user-info">
         <div class="col-sm-4 col-12 texto-info">
           <div class="seguidos text-center">
-            <small class="text-muted"> Seguidores </small>
-            <h2>{{clientes | safe}}</h2>
+            <small class="text-muted"></small>
+            {% if esEmp == 1 %}
+            <form action="/eliminar_evento?eventoid={{evento.id}}" method="post" id="formulario-eliminar">
+              <button type="submit" class="btn btn-danger" id="eliminar-local">Eliminar evento</button>
+            </form>
+            {% endif %}
+            <!-- <h2>{{clientes | safe}}</h2> -->
           </div>
         </div>
-
+        
         <div class="col-sm-4 col-12 texto-info">
           <i class="fa fa-info-circle" aria-hidden="true"></i> Información <br>
-          <small class="text-muted">Local: </small><small class="text-muted">local 1</small> <br>
-          <small class="text-muted">Fecha: </small><small class="text-muted">12/12/2020</small> <br>
-          <small class="text-muted">Hora: </small><small class="text-muted">20:00 - 22:00</small> <br><br>
+          <small class="text-muted"> <b>Local:</b> </small><small class="text-muted">
+            <a href="/profile_local?localid={{local.id}}">{{ local.nombre | safe }}</a>
+          </small> <br>
+          <small class="text-muted"><b>Empresa:</b> </small><small class="text-muted">
+            <a href="/profile_empresa?empid={{empresa.id}}">{{ empresa.nombre | safe }}</a>
+          </small> <br>
+          <small class="text-muted"><b>Fecha Inicio:</b> </small><small class="text-muted">{{ evento.fechaInicio | safe}}</small> <br>
+          <small class="text-muted"><b>Fecha Fin:</b> </small><small class="text-muted">{{ evento.fechaFin | safe}}</small><br><br>
         </div>
 
         <div class="col-sm-4 col-12 texto-info">
-            <small class="text-muted">Precio: </small><small class="text-muted">$20</small> <br>
-            <small class="text-muted">Descripción: </small><small class="text-muted">este evento es para todos</small> <br>
+            <small class="text-muted"><b>Precio:</b> </small><small class="text-muted">{{ evento.precio | safe}}</small> <br>
+            <small class="text-muted"><b>Descripción:</b> </small><small class="text-muted">{{ evento.descripcion | safe}}</small> <br>
           <br><br>
         </div>
-
-        
       </div>
 
 
@@ -103,7 +126,7 @@
 
   
 
-  <script src="../static/js/principal.js"></script>
+  
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
@@ -123,6 +146,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+  <script src="../static/js/principal.js"></script>
 </body>
 
 </html>

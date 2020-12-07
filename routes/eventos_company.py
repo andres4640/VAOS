@@ -1,4 +1,5 @@
 from . import * 
+import sys
 
 @routes.route("/eventos")
 def mostrar_eventos():

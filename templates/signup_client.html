@@ -44,11 +44,13 @@
               <div class="form-group">
                 <label for="nacionalidad">Nacionalidad</label>
                 <select class="form-control select-client" id="nacionalidad" name="nacionalidad">
-                  <option>Perú</option>
-                  <option>Brasil</option>
+                  {% for nacion in nacionalidades %}
+                  <option value="{{ nacion.id | safe }}">{{ nacion.pais | safe }}</option>
+                  {% endfor %}
+                  <!-- <option>Brasil</option>
                   <option>Chile</option>
                   <option>USA</option>
-                  <option>Argentina</option>
+                  <option>Argentina</option> -->
                 </select>
               </div>
             </div>

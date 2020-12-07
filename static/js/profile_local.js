@@ -86,3 +86,7 @@ $("#submit-btn").on('click',function(){
 $("#enviarClick").on('click',function(){
     $('#form-valoracion').submit();
 })
+
+$("#eliminar-local").on('click',function(){
+    $('#formulario-eliminar').submit();
+})

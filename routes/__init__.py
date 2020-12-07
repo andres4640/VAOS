@@ -18,4 +18,6 @@ from .eventos_company import *
 from .perfil_empresa_editar import * 
 from .perfil_cliente_editar import * 
 from .perfil_local_editar import *
+from .perfil_evento import *
+from .eventos_seguidos import *
 

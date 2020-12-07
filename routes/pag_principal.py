@@ -1,6 +1,7 @@
 from . import *
 from flask import jsonify, json
-
+from datetime import datetime, date
+import sys
 
 @routes.route("/inicio")
 def inicio():
@@ -74,10 +75,16 @@ def lista_eventos():
                 
                 return redirect("/profile_empresa")
             else:             
-                total_eventos = db.session.query(Evento).all()
-                cantidad_eventos = len(total_eventos)
+                total_eventos = db.session.query(Evento).all()            
+                if len(total_eventos) > 1:
+                    eventos_filtro = []
+                    today = datetime.combine(date.today(), datetime.min.time())
+                    for even in total_eventos:
+                        if even.fechaInicio > today:
+                            eventos_filtro.append(even)
+                    total_eventos = eventos_filtro
                 print(total_eventos)
-                return render_template("lista_eventos.html", lista_eventos=total_eventos, cantidad_eventos=cantidad_eventos)
+                return render_template("lista_eventos.html", lista_eventos=total_eventos, cantidad_eventos=len(total_eventos))
         else:
             return redirect("/")
     except:

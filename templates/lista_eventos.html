@@ -38,7 +38,7 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="/inicio">Inicio</a>
         <a href="/profile_cliente">Perfil</a>
-        <a href="eventos_emp_seguidas.html">Seguidos</a>
+        <a href="/eventos_seguidos">Seguidos</a>
         <a href="/cerrar_sesion">Cerrar sesión</a>
       </div>  
       
@@ -51,7 +51,7 @@
                   <div class="row">
                     <div class="col-12">
                       <div class="row no-gutters">
-                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                        <!-- <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                           <select class="form-control" id="exampleFormControlSelect1">
                             <option>Location</option>
                             <option>London</option>
@@ -61,8 +61,8 @@
                             <option>Toronto</option>
                             <option>Paris</option>
                           </select>
-                        </div>
-                        <div class="col-lg-8 col-md-6 col-sm-12 p-0">
+                        </div> -->
+                        <div class="col-lg-11 col-md-6 col-sm-12 p-1">
                           <input type="text" placeholder="Search..." class="form-control" id="search" name="search">
                         </div>
                         <div class="col-lg-1 col-md-3 col-sm-12 p-0">
@@ -150,6 +150,11 @@
                         <div class="table-responsive">
                           <table class="table widget-26">
                             <tbody id="table-body">
+                              <tr>
+                                <td><b>Nombre de Evento</b></td>
+                                <td><b>Fecha Inicio - Fecha Fin</b></td>
+                                <td><b>Precio Entrada</b></td>
+                              </tr> 
                               {% for evento in lista_eventos %}        
                               <tr>
                                 <!-- <td>
@@ -160,7 +165,8 @@
                                 
                                 <td>
                                   <div class="widget-26-job-title">
-                                    <a href="">{{ evento.nombre | safe }}</a>
+                                    <a href="/profile_evento?empid={{evento.id}}">{{ evento.nombre | safe }}</a>
+                                    
                                   </div>
                                 </td>
                                 <td>

@@ -88,7 +88,7 @@
                     <div class="card-deck">
                         {% for evento in lista_eventos %}
                         <div class="card p-4">
-                            <a class="card-block stretched-link text-decoration-none text-reset" href="/">
+                            <a class="card-block stretched-link text-decoration-none text-reset" href="/profile_evento?empid={{evento.id}}">
                                 <h4 class="card-title">{{ evento.nombre | safe }}</h4>
                                 <p class="card-text">{{ evento.fechaInicio | safe }}</p>
                                 <p class="card-text">{{ evento.fechaFin | safe }}</p>

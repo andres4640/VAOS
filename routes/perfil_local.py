@@ -1,5 +1,6 @@
 from . import *
 import json, math
+import sys
 
 @routes.route("/profile_local")
 def profile_local():
@@ -24,6 +25,13 @@ def profile_local():
 
             lista_valoraciones = db.session.query(Valoracion).filter(Valoracion.id_local == localId)
 
+            lista_eventos = local.eventos
+
+            if len(lista_eventos) == 0:
+                hay_eventos = 0
+            else:
+                hay_eventos = 1
+
             
             if lista_valoraciones.count() != 0:
                 for estrellas in lista_valoraciones:    
@@ -34,7 +42,8 @@ def profile_local():
                 num_estrellas_aprox = math.ceil(total)
 
             valoraciones = db.session.query(Valoracion, Usuario_reg).join(Usuario_reg,Usuario_reg.id == Valoracion.id_regular).filter(Valoracion.id_local == localId)
-            return render_template("profile_local.html", local=local, horario=horario, lista_ambientes=lista_ambiente, lista_musica=lista_musicas, esEmp=esEmp, valoraciones=valoraciones, num_estrellas=num_estrellas_aprox, count=count, empresaid=session["empresaid"], nombre_emp=nombre_emp)  
+            return render_template("profile_local.html", local=local, horario=horario, lista_ambientes=lista_ambiente, lista_musica=lista_musicas, esEmp=esEmp, valoraciones=valoraciones, num_estrellas=num_estrellas_aprox, count=count, empresaid=session["empresaid"], nombre_emp=nombre_emp,
+            eventos=lista_eventos, hay_eventos=hay_eventos)  
             
         else:
             return redirect("/")
@@ -95,6 +104,30 @@ def local_editar_confirmar():
                 return redirect("/")
         else:
             return redirect("/")
+    except:
+        e = sys.exc_info()[0]
+        print("Unexpected error: ", e)
+        raise
+
+@routes.route("/eliminar_local", methods=["POST"])
+def eliminar_local():
+    try:
+        if "iduser" in session:
+            if session["esEmp"] == 1:
+                localId = request.args.get('localid')
+                local = db.session.query(Local).filter(Local.id == localId).first()
+                for even in local.eventos:
+                    db.session.delete(even)
+
+                db.session.delete(local)
+                db.session.commit()
+                flash("Perfil eliminado exitosamente", "exito_editar_empresa")
+                return redirect("/locales")         
+            else:
+                return redirect("/")
+        else:
+            return redirect("/")
+
     except:
         e = sys.exc_info()[0]
         print("Unexpected error: ", e)

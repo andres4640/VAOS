@@ -48,13 +48,24 @@
 
   </header>
 
+  {% if esEmp == 1 %}
   <div id="mySidebar" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="/profile_empresa">Perfil</a>
     <a href="/locales">Locales</a>
     <a href="/eventos">Eventos</a>
-    <a id="logout" href="/cerrar_sesion">Cerrar sesión</a>
+    <a href="/cerrar_sesion">Cerrar sesión</a>
   </div>
+  {% endif %}
+  {% if esEmp == 0 %}
+  <div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/inicio">Inicio</a>
+    <a href="/profile_cliente">Perfil</a>
+    <a href="/eventos_seguidos">Seguidos</a>
+    <a href="/cerrar_sesion">Cerrar sesión</a>
+  </div>   
+  {% endif %}
 
 
   <div id="main">
@@ -64,14 +75,18 @@
         <div class="col-sm-3 col-12 text-center">
           <img src="../static/img/user.png" alt="" class="user_foto">
 
-          <br>
+          <br><br>
           <!-- Button trigger modal -->
           {% if esEmp == 1 %}
           <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
             Editar
           </button>
+          <br><br>
+          <form action="/eliminar_local?localid={{local.id}}" method="post" id="formulario-eliminar">
+            <button type="button" class="btn btn-danger" id="eliminar-local">Eliminar local</button>
+          </form>
+          
           {% endif %}
-
           <!-- Modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -269,6 +284,31 @@
           </div>
 
           <br>
+          <div class="valoraciones">
+            <div class="TITULO_valoraciones">
+              <strong>EVENTOS</strong>
+            </div>
+          <div class="container py-4">
+            <div class="card-deck-wrapper">
+                <div class="card-deck">
+                  {% if hay_eventos == 1 %}
+                    {% for evento in eventos %}
+                      <div class="card p-4">
+                          <a class="card-block stretched-link text-decoration-none text-reset" href="/profile_evento?empid={{evento.id}}">
+                              <h4 class="card-title">{{evento.nombre | safe }}</h4>
+                            
+                              <p class="card-text"> <b>Fecha Inicio: </b> {{ evento.fechaInicio | safe }}</p>
+                              <p class="card-text"> <b>Fecha Fin:</b> {{ evento.fechaFin | safe }}</p>
+                              <p class="card-text"> <b>Descripcion:</b> {{ evento.descripcion | safe }}</p>
+                          </a>
+                      </div>
+                    {% endfor %}
+                  {% elif hay_eventos == 0 %}
+                  <p>No hay eventos...</p>
+                  {% endif %}
+                </div>
+            </div>
+          </div>
 
           <div class="valoraciones">
             <div class="TITULO_valoraciones">

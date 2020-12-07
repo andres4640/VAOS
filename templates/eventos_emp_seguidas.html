@@ -38,7 +38,7 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="/inicio">Inicio</a>
         <a href="/profile_cliente">Perfil</a>
-        <a href="eventos_emp_seguidas.html">Seguidos</a>
+        <a href="/eventos_seguidos">Seguidos</a>
         <a href="/cerrar_sesion">Cerrar sesión</a>
       </div>  
       
@@ -53,7 +53,7 @@
                       <div class="result-header">
                         <div class="row">
                           <div class="col-lg-6">
-                            <div class="records" id="records">Showing: <b>{{ cantidad_locales | safe }}</b> results</div>       
+                            <div class="records" id="records">Showing: <b>{{ num_eventos | safe }}</b> results</div>       
                           </div>
                           <div class="col-lg-6">
                             <div class="result-actions">
@@ -108,7 +108,12 @@
                         <div class="table-responsive">
                           <table class="table widget-26">
                             <tbody id="table-body">
-                              {% for local in lista_locales %}        
+                              <tr>
+                                <td><b>Nombre de Evento</b></td>
+                                <td><b>Fecha Inicio - Fecha Fin</b></td>
+                                <td><b>Precio Entrada</b></td>
+                              </tr> 
+                              {% for evento in eventos %}       
                               <tr>
                                 <!-- <td>
                                   <div class="widget-26-job-emp-img">
@@ -118,28 +123,17 @@
                                 
                                 <td>
                                   <div class="widget-26-job-title">
-                                    <a href="/profile_local?localid={{local.id}}">{{ local.nombre | safe }}</a>
+                                    <a href="/profile_evento?empid={{evento.id}}">{{ evento.nombre | safe }}</a>
                                   </div>
                                 </td>
                                 <td>
                                   <div class="widget-26-job-info">
-                                    <p class="type m-0">{{ local.horaApertura | safe }} - {{ local.horaCierre | safe }}</p>
-                                    <!-- <p class="text-muted m-0"><span class="location">{{ local.horaCierre | safe }}</span></p> -->
+                                    <p class="type m-0">{{ evento.fechaInicio | safe }} - </p>
+                                    <p class="text-muted m-0"><span class="location">{{ evento.fechaFin | safe }}</span></p>
                                   </div>
                                 </td>
                                 <td>
-                                  <div class="widget-26-job-salary">{{ local.direccion | safe }}</div>
-                                </td>
-                                <td>
-                                  <div class="widget-26-job-category bg-soft-base">
-                                    <i class="indicator bg-base"></i>
-                                    {% if local.tipoLocal == "1" %}
-                                    <span>BAR</span>
-                                    {% endif %}
-                                    {% if local.tipoLocal == "2" %}
-                                    <span>DISCOTECA</span>
-                                    {% endif %}
-                                  </div>
+                                  <div class="widget-26-job-salary">{{ evento.precio | safe }}</div>
                                 </td>
                                 <td>
                                   <div class="widget-26-job-starred">
